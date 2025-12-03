@@ -1,0 +1,1 @@
+export const exampleConstant = "this ia a const val";
