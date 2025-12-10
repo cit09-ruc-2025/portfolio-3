@@ -1,10 +1,5 @@
-import ExampleComponent from "./components/example-component";
+import TrendingList from "./components/trending-list";
 
 export default function HomePage() {
-  return (
-    <>
-      <h1>Home Page</h1>
-      <ExampleComponent />
-    </>
-  );
+  return <TrendingList />;
 }
