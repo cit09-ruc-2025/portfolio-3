@@ -1,0 +1,24 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+:root {
+  --primary: #155c28;
+  --secondary: #749a77;
+  --accent: #edfeee;
+  --tertiary: #fffbce;
+}
+
+.spinner {
+  border-color: var(--primary);
+  border-right-color: transparent;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: var(--primary);
+}
+
+.slick-track {
+  display: flex;
+  gap: 10px;
+}
