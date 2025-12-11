@@ -18,3 +18,14 @@ export const useGetMediaList = ({ page, perPage, orderBy }) => {
     })
   });
 };
+
+export const useGetMediaDetail = (id) => {
+  return useQuery({
+    queryKey: ["media", id],
+    queryFn: () => fetchHttp({
+      url: urls.media.detail.replace(":id", id), options: {
+        method: HTTP_METHODS.GET,
+      }
+    })
+  });
+};

@@ -22,3 +22,8 @@
   display: flex;
   gap: 10px;
 }
+
+.primary-button {
+  background: var(--primary);
+  border: var(--primary);
+}

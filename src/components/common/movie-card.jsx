@@ -28,7 +28,7 @@ const MovieCard = ({ movieDetail }) => {
 
   return (
     <Link
-      to={routeUrls.media.replace(":mediaId", id)}
+      to={routeUrls.media.replace(":id", id)}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Card>
