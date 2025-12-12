@@ -1,8 +1,8 @@
 import { Col } from "react-bootstrap";
-import { useGetImage } from "../../hooks/queries/images";
-import Spinner from "../../components/layout/spinner";
 import { Link } from "react-router-dom";
-import { routeUrls } from "../../libs/route";
+import Spinner from "../../../components/layout/spinner";
+import { useGetImage } from "../../../hooks/queries/images";
+import { routeUrls } from "../../../libs/route";
 
 const MediaCrewCard = ({ people }) => {
   const { description, personName, roleName, peopleId } = people;

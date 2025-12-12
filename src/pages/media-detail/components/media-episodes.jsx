@@ -1,18 +1,9 @@
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Row,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
-import Spinner from "../../components/layout/spinner";
-import { useGetEpisodesList } from "../../hooks/queries/media";
 import { useEffect, useState } from "react";
-import { routeUrls } from "../../libs/route";
+import { Card, CardBody, CardTitle, Row, Tab, Tabs } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Spinner from "../../../components/layout/spinner";
+import { useGetEpisodesList } from "../../../hooks/queries/media";
+import { routeUrls } from "../../../libs/route";
 
 const MediaEpisodes = ({ id }) => {
   const [activeKey, setActiveKey] = useState("");
