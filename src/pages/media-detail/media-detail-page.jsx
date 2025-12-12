@@ -3,10 +3,9 @@ import { useGetMediaDetail } from "../../hooks/queries/media";
 import Spinner from "../../components/layout/spinner";
 import { Badge, Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { Calendar, Clock, Star } from "lucide-react";
-import MediaCrew from "./media-crew";
 import MediaHeader from "./media-header";
-import ReusableSlider from "../../components/layout/slider";
 import ExtraDetail from "./extra-detail";
+import MediaCrewList from "./media-crew-list";
 
 const MediaDetailPage = () => {
   const { id } = useParams();
@@ -22,20 +21,21 @@ const MediaDetailPage = () => {
   }
 
   const {
-    title,
+    averageRating,
+    ageRating,
+    boxOffice,
+    endYear,
+    imdbAverageRating,
+    production,
     releaseYear,
     runtimeMinutes,
-    plot,
+    websiteUrl,
     poster,
-    imdbAverageRating,
-    averageRating,
-    peopleInvolved,
+    plot,
     genres,
-    website,
-    languages,
-    boxOffice,
+    title,
     titles,
-    production,
+    languages,
   } = data;
 
   return (
@@ -44,7 +44,7 @@ const MediaDetailPage = () => {
       <Container className="mt-5 d-flex flex-column gap-2">
         <Col className="d-flex flex-row gap-1 flex-wrap mb-4">
           {genres?.map((g) => (
-            <Badge bg="secondary" pill>
+            <Badge bg="secondary" pill key={g}>
               {g}
             </Badge>
           ))}
@@ -61,6 +61,12 @@ const MediaDetailPage = () => {
                   <Calendar size="16" />
                   Release: {releaseYear}
                 </div>
+                {!!endYear && (
+                  <div className="d-flex gap-1 align-items-center">
+                    <Calendar size="16" />
+                    End: {endYear}
+                  </div>
+                )}
                 {runtimeMinutes && runtimeMinutes !== "N/A" && (
                   <div className="d-flex gap-1 align-items-center">
                     <Clock size="16" />
@@ -77,11 +83,7 @@ const MediaDetailPage = () => {
         </Row>
         <Row>
           <h5>Crew</h5>
-          <ReusableSlider slidesToShow={4} showDots={false}>
-            {peopleInvolved?.map((people) => (
-              <MediaCrew people={people} />
-            ))}
-          </ReusableSlider>
+          <MediaCrewList id={id} />
         </Row>
         <ExtraDetail
           languages={languages}
@@ -89,7 +91,7 @@ const MediaDetailPage = () => {
           boxOffice={boxOffice}
           titles={titles}
           title={title}
-          website={website}
+          website={websiteUrl}
         />
       </Container>
     </Container>

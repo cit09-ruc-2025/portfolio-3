@@ -4,8 +4,9 @@ import Spinner from "../../components/layout/spinner";
 import { Link } from "react-router-dom";
 import { routeUrls } from "../../libs/route";
 
-const MediaCrew = ({ people }) => {
-  const { peopleId, character, name, role } = people;
+const MediaCrewCard = ({ people }) => {
+  const { description, personName, roleName, peopleId } = people;
+
   const { isLoading, data } = useGetImage(peopleId);
 
   const { profile_path } = data?.person_results?.[0] ?? "";
@@ -33,18 +34,18 @@ const MediaCrew = ({ people }) => {
             />
           )}
         </div>
-        <p className="m-0 fw-semibold">{name}</p>
+        <p className="m-0 fw-semibold">{personName}</p>
         <p
           className="m-0"
           style={{ textTransform: "capitalize", fontSize: "14px" }}
         >
-          {role === "actor" || role === "actress"
-            ? character.replace(/['[\]]/g, "")
-            : role}
+          {roleName === "actor" || roleName === "actress"
+            ? description.replace(/['[\]]/g, "")
+            : roleName}
         </p>
       </Col>
     </Link>
   );
 };
 
-export default MediaCrew;
+export default MediaCrewCard;

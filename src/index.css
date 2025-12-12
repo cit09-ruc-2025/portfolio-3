@@ -23,7 +23,24 @@
   gap: 10px;
 }
 
-.primary-button {
+.primary-button,
+.primary-button:first-child:active {
   background: var(--primary);
-  border: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.primary-button:hover {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.show-more-btn {
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.show-more-btn:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
 }

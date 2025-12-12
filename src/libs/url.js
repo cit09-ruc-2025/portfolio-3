@@ -1,6 +1,7 @@
 export const urls = {
   media: {
     list: "/media",
-    detail: "/media/details/:id"
+    detail: "/media/:id",
+    people: "/media/:id/people"
   }
 }
