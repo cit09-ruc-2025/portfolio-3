@@ -25,36 +25,36 @@ const ExtraDetail = ({
       <h5>Additional Details</h5>
       {languages && (
         <>
-          <Col className="d-flex flex-row gap-4">
-            <p className="fw-semibold">Languages</p>
-            <p>{languages.join(", ")}</p>
+          <Col className="d-flex flex-row gap-4 mb-1">
+            <p className="fw-semibold m-0">Languages</p>
+            <p className="m-0">{languages.join(", ")}</p>
           </Col>
           <hr className="m-0" />
         </>
       )}
       {production && production !== "N/A" && (
         <>
-          <Col className="d-flex flex-row gap-4">
-            <p className="fw-semibold">Production</p>
-            <p>{production}</p>
+          <Col className="d-flex flex-row gap-4 mb-1">
+            <p className="fw-semibold m-0">Production</p>
+            <p className="m-0">{production}</p>
           </Col>
           <hr className="m-0" />
         </>
       )}
       {boxOffice && boxOffice !== "N/A" && (
         <>
-          <Col className="d-flex flex-row gap-4">
-            <p className="fw-semibold">Box Office</p>
-            <p>{boxOffice}</p>
+          <Col className="d-flex flex-row gap-4 mb-1">
+            <p className="fw-semibold m-0">Box Office</p>
+            <p className="m-0">{boxOffice}</p>
           </Col>
           <hr className="m-0" />
         </>
       )}
       {!!alternate_titles?.length && (
         <>
-          <Col className="d-flex flex-row gap-4">
-            <p className="fw-semibold">Also Known As</p>
-            <p>
+          <Col className="d-flex flex-row gap-4 mb-1">
+            <p className="fw-semibold m-0">Also Known As</p>
+            <p className="m-0">
               {visible_titles.join(", ")}
               &nbsp;
               {alternate_titles?.length > 10 && (
@@ -72,8 +72,8 @@ const ExtraDetail = ({
       )}
       {website && website !== "N/A" && (
         <>
-          <Col className="d-flex flex-row gap-4">
-            <p className="fw-semibold">Website</p>
+          <Col className="d-flex flex-row gap-4 mb-1">
+            <p className="fw-semibold m-0">Website</p>
             <Link to={website}>
               <Globe
                 style={{

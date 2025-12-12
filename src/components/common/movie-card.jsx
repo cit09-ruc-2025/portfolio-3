@@ -32,7 +32,7 @@ const MovieCard = ({ movieDetail }) => {
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Card>
-        <div style={{ minHeight: "300px" }}>
+        <div style={{ height: "300px" }} className="d-flex flex-column">
           {isLoading ? (
             <Spinner />
           ) : (

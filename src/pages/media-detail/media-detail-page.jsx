@@ -18,12 +18,11 @@ const MediaDetailPage = () => {
   }
 
   if (!data) {
-    return <p>Error Occured</p>;
+    return <p>Error Occurred</p>;
   }
 
   const {
     averageRating,
-    ageRating,
     boxOffice,
     endYear,
     imdbAverageRating,
@@ -31,19 +30,27 @@ const MediaDetailPage = () => {
     releaseYear,
     runtimeMinutes,
     websiteUrl,
-    poster,
     plot,
     genres,
     title,
     titles,
     languages,
     hasEpisodes,
+    isEpisode,
   } = data;
 
   return (
-    <Container fluid className=" d-flex flex-column p-0 gap-2">
-      <MediaHeader averageRating={averageRating} title={title} />
-      <Container className="mt-5 d-flex flex-column gap-2">
+    <Container fluid className="d-flex flex-column p-0 gap-2 mb-4">
+      <Col className="d-flex flex-column " style={{ minHeight: "80vh" }}>
+        <MediaHeader
+          averageRating={averageRating}
+          title={title}
+          id={id}
+          hasEpisodes={hasEpisodes}
+          isEpisode={isEpisode}
+        />
+      </Col>
+      <Container className="mt-5 d-flex flex-column gap-5">
         <Col className="d-flex flex-row gap-1 flex-wrap mb-4">
           {genres?.map((g) => (
             <Badge bg="secondary" pill key={g}>

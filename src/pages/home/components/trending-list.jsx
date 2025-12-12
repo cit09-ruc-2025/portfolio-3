@@ -10,7 +10,7 @@ const TrendingList = () => {
   });
 
   return (
-    <Container>
+    <Container className="mb-4">
       <p style={{ fontSize: "20px", fontWeight: "500" }}>Trending</p>
       <MovieList data={data} isLoading={isLoading} />
     </Container>
@@ -19,29 +19,19 @@ const TrendingList = () => {
 export default TrendingList;
 
 const MovieList = ({ data, isLoading }) => {
-  if (isLoading)
-    return (
-      <div
-        className="d-flex flex-column justify-content-center align-items-center"
-        style={{ minHeight: "200px" }}
-      >
-        <Spinner />
-      </div>
-    );
+  if (isLoading) return <Spinner />;
 
   const { items: movieList } = data;
 
   if (!data) {
-    return <p>An Error Occurred</p>;
+    return <p>Error Occurred</p>;
   }
 
   return (
     <Row>
       <ReusableSlider slidesToShow={4} showDots={false}>
         {movieList.map((movie) => (
-          <Col key={movie.id} xs={12} sm={6} md={4} className="mb-3">
-            <MovieCard movieDetail={movie} />
-          </Col>
+          <MovieCard movieDetail={movie} key={movie.id} />
         ))}
       </ReusableSlider>
     </Row>

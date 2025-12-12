@@ -1,4 +1,13 @@
-import { Row, Tab, Tabs } from "react-bootstrap";
+import {
+  Badge,
+  Card,
+  CardBody,
+  CardTitle,
+  Col,
+  Row,
+  Tab,
+  Tabs,
+} from "react-bootstrap";
 import Spinner from "../../components/layout/spinner";
 import { useGetEpisodesList } from "../../hooks/queries/media";
 import { useEffect, useState } from "react";
@@ -22,33 +31,53 @@ const MediaEpisodes = ({ id }) => {
   if (!data) return <>Error</>;
 
   return (
-    <Tabs id="season-tabs" activeKey={activeKey}>
-      {data.map((season) => (
-        <Tab eventKey={season.season} title={season.season}>
-          {season.episodes.map((episode) => (
-            <Row>
-              <div className="d-flex gap-1">
-                <Link
-                  to={routeUrls.media.replace(":id", episode.id)}
-                  style={{
-                    marginBottom: "5px",
-                    fontWeight: "500",
-                    textDecoration: "none",
-                    color: "inherit",
-                  }}
-                >
-                  {episode.title}
-                </Link>
-                <span
-                  style={{ fontWeight: "400", color: "grey" }}
-                >{`Ep${episode.episodeNumber}`}</span>
-              </div>
+    <Row className="justify-content-center episode-tab">
+      <Tabs id="season-tabs" activeKey={activeKey}>
+        {data.map((season) => (
+          <Tab eventKey={season.season} title={`Season ${season.season}`}>
+            <SeasonEpisodeList season={season} />
+          </Tab>
+        ))}
+      </Tabs>
+    </Row>
+  );
+};
+
+const SeasonEpisodeList = ({ season }) => {
+  return (
+    <div className="episode-tab-content" key={season.seasonNumber}>
+      {season.episodes.map((episode) => (
+        <Link
+          to={routeUrls.media.replace(":id", episode.id)}
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <Card
+            style={{
+              padding: "8px",
+              height: "100%",
+            }}
+          >
+            <CardBody>
+              <div
+                style={{
+                  width: "fit-content",
+                  borderRadius: "12px",
+                  fontSize: "12px",
+                  backgroundColor: "var(--primary)",
+                  color: "white",
+                  padding: "2px 4px",
+                }}
+              >{`Episode ${episode.episodeNumber}`}</div>
+              <CardTitle>{episode.title}</CardTitle>
               <p style={{ fontSize: "14px" }}>{episode.plot}</p>
-            </Row>
-          ))}
-        </Tab>
+            </CardBody>
+          </Card>
+        </Link>
       ))}
-    </Tabs>
+    </div>
   );
 };
 
