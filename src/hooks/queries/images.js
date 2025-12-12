@@ -1,18 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetMediaImage(id, mediaType) {
-  let url = `${import.meta.env.VITE_TMDB_BASE_URL}/:mediaType/${id}/images?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
+export function useGetMediaImage(id) {
 
-  if (mediaType === "movie" || mediaType === "tvMovie") {
-    url = url.replace(":mediaType", "movie")
-  }
-  else if (mediaType === "tvSeries" || mediaType === "tvMiniSeries") {
-    url = url.replace(":mediaType", "tv");
-  }
+
+
   return useQuery({
     queryKey: ["tmdb-images", id],
     queryFn: async () => {
-      const res = await fetch(url
+      const res = await fetch(`${import.meta.env.VITE_TMDB_BASE_URL}/find/${id}/?external_source=imdb_id&api_key=${import.meta.env.VITE_TMDB_API_KEY}`
       );
       return res.json();
     },

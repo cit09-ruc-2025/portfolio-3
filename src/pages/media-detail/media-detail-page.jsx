@@ -6,6 +6,7 @@ import { Calendar, Clock, Star } from "lucide-react";
 import MediaHeader from "./media-header";
 import ExtraDetail from "./extra-detail";
 import MediaCrewList from "./media-crew-list";
+import MediaEpisodes from "./media-episodes";
 
 const MediaDetailPage = () => {
   const { id } = useParams();
@@ -36,6 +37,7 @@ const MediaDetailPage = () => {
     title,
     titles,
     languages,
+    hasEpisodes,
   } = data;
 
   return (
@@ -93,6 +95,12 @@ const MediaDetailPage = () => {
           title={title}
           website={websiteUrl}
         />
+        {hasEpisodes && (
+          <Row>
+            <h5>Episodes</h5>
+            <MediaEpisodes id={id} />
+          </Row>
+        )}
       </Container>
     </Container>
   );

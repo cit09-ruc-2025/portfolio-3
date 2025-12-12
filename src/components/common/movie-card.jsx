@@ -76,15 +76,17 @@ const MovieCard = ({ movieDetail }) => {
           >
             {title}
           </CardTitle>
-          <p
-            style={{
-              color: "#212529bf",
-              fontSize: "13px",
-              lineHeight: "12px",
-            }}
-          >
-            {releaseYear}
-          </p>
+          {releaseYear && (
+            <p
+              style={{
+                color: "#212529bf",
+                fontSize: "13px",
+                lineHeight: "12px",
+              }}
+            >
+              {releaseYear}
+            </p>
+          )}
         </CardBody>
       </Card>
     </Link>

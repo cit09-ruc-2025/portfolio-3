@@ -57,3 +57,14 @@ export const useGetMediaPeople = (id) => {
     initialPageParam: 1,
   });
 };
+
+export const useGetEpisodesList = (id) => {
+  return useQuery({
+    queryKey: ["media-episode", id],
+    queryFn: () => fetchHttp({
+      url: urls.media.episodes.replace(":id", id), options: {
+        method: HTTP_METHODS.GET,
+      }
+    })
+  });
+};
