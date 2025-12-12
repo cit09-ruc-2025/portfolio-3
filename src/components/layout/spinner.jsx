@@ -1,12 +1,19 @@
-import { Spinner as BootstrapSpinner } from "react-bootstrap";
+import { Spinner as BootstrapSpinner, Container } from "react-bootstrap";
 
-const Spinner = () => {
+const Spinner = ({ height, width }) => {
   return (
-    <BootstrapSpinner
-      animation="border"
-      role="status"
-      className="spinner"
-    ></BootstrapSpinner>
+    <Container
+      fluid
+      className="p-0 d-flex justify-content-center align-items-center"
+      style={{ height: "100%" }}
+    >
+      <BootstrapSpinner
+        animation="border"
+        role="status"
+        className="spinner"
+        style={{ height, width }}
+      ></BootstrapSpinner>
+    </Container>
   );
 };
 

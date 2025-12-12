@@ -3,11 +3,11 @@ export const routeUrls = {
   auth: '/auth',
   favorites: '/favorites',
   profile: '/:username',
-  playlist: '/:username/playlist/:playlistId',
+  playlist: '/:username/playlist/:id',
   watchHistory: '/watch-history',
   searchHistory: '/search-history',
-  person: '/person/:personId',
-  media: '/media/:mediaId',
+  person: '/person/:id',
+  media: '/media/:id',
   search: '/search',
   genre: '/genre/:genreName'
 }

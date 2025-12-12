@@ -10,15 +10,17 @@ const ReusableSlider = ({
   showDots = true,
   showArrows = true,
   responsive = [],
+  infinite = true,
+  onAfterChange = null,
 }) => {
   const settings = {
     dots: showDots,
-    infinite: true,
+    infinite,
     speed: 500,
     slidesToShow,
     slidesToScroll,
     arrows: showArrows,
-
+    afterChange: onAfterChange,
     responsive: responsive.length
       ? responsive
       : [

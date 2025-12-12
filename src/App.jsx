@@ -5,11 +5,16 @@ import ProtectedRoutes from "./components/providers/protected-routes";
 import QueryClientProvider from "./context/query-client-provider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import MediaDetailPage from "./pages/media-detail/media-detail-page";
 
 const router = createBrowserRouter([
   {
     path: routeUrls.homepage,
     element: <HomePage />,
+  },
+  {
+    path: routeUrls.media,
+    element: <MediaDetailPage />,
   },
   {
     element: (

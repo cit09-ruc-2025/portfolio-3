@@ -19,5 +19,12 @@ export const fetchHttp = async ({ url, options = {} }) => {
 
   const data = await response.json();
 
+  if (!response.ok) {
+    const error = new Error("HTTP error");
+    error.status = response.status;
+    error.data = data;
+    throw error;
+  }
+
   return data;
 };

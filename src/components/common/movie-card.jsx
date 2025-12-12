@@ -28,11 +28,11 @@ const MovieCard = ({ movieDetail }) => {
 
   return (
     <Link
-      to={routeUrls.media.replace(":mediaId", id)}
+      to={routeUrls.media.replace(":id", id)}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <Card>
-        <div style={{ minHeight: "300px" }}>
+        <div style={{ height: "300px" }} className="d-flex flex-column">
           {isLoading ? (
             <Spinner />
           ) : (
@@ -76,15 +76,17 @@ const MovieCard = ({ movieDetail }) => {
           >
             {title}
           </CardTitle>
-          <p
-            style={{
-              color: "#212529bf",
-              fontSize: "13px",
-              lineHeight: "12px",
-            }}
-          >
-            {releaseYear}
-          </p>
+          {releaseYear && (
+            <p
+              style={{
+                color: "#212529bf",
+                fontSize: "13px",
+                lineHeight: "12px",
+              }}
+            >
+              {releaseYear}
+            </p>
+          )}
         </CardBody>
       </Card>
     </Link>
