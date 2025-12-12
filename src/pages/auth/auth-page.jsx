@@ -34,7 +34,7 @@ const AuthPage = () => {
           </Tab>
 
           <Tab eventKey="signup" title="Sign Up">
-            <SignupForm />
+            <SignupForm setActiveKey={setActiveKey} />
           </Tab>
         </Tabs>
       </Card>

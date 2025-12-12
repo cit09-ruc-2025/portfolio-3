@@ -14,3 +14,15 @@ export const useLogin = () => {
     })
   });
 };
+
+export const useSignup = () => {
+  return useMutation({
+    mutationFn: (payload) => fetchHttp({
+      url: urls.auth.signup,
+      options: {
+        method: HTTP_METHODS.POST,
+        body: payload
+      }
+    })
+  });
+};

@@ -6,6 +6,7 @@ export const urls = {
     episodes: "/media/:id/episodes"
   },
   auth: {
-    login: "/login"
+    login: "/login",
+    signup: "/user"
   }
 }
