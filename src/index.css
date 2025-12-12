@@ -61,17 +61,19 @@
   z-index: 1;
 }
 
+.custom-tab .nav-tabs {
+  background-color: var(--tertiary);
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
 .episode-tab .nav-tabs {
   border-bottom: 0;
   gap: 2px;
   width: 70%;
   flex-wrap: nowrap;
   overflow: scroll;
-  padding: 10px 0;
-  background-color: var(--tertiary);
-  border-radius: 12px;
-  box-sizing: border-box;
-  padding: 4px;
 
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
@@ -81,20 +83,15 @@
   display: none; /* Chrome, Safari, Opera */
 }
 
-.episode-tab .nav-tabs .nav-item {
-  width: fit-content;
-  box-sizing: border-box;
-}
-
-.episode-tab .nav-item .nav-link {
+.custom-tab .nav-item .nav-link {
   color: black;
   padding: 8px 16px;
   border-radius: 10px;
   white-space: nowrap;
 }
 
-.episode-tab .nav-item .nav-link.active,
-.episode-tab .nav-item .nav-link:hover {
+.custom-tab .nav-item .nav-link.active,
+.custom-tab .nav-item .nav-link:hover {
   background-color: var(--primary);
   color: white;
 }
@@ -111,4 +108,17 @@
   @media (max-width: 575px) {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.form-label {
+  font-size: 14px;
+  margin: 0;
+}
+
+input::placeholder {
+  font-size: 16px;
+}
+
+input {
+  font-size: 16px;
 }

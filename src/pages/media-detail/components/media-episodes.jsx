@@ -22,7 +22,7 @@ const MediaEpisodes = ({ id }) => {
   if (!data) return <>Error</>;
 
   return (
-    <Row className="justify-content-center episode-tab">
+    <Row className="justify-content-center episode-tab custom-tab">
       <Tabs id="season-tabs" activeKey={activeKey}>
         {data.map((season) => (
           <Tab eventKey={season.season} title={`Season ${season.season}`}>

@@ -6,6 +6,7 @@ import QueryClientProvider from "./context/query-client-provider";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import MediaDetailPage from "./pages/media-detail/media-detail-page";
+import AuthPage from "./pages/auth/auth-page";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +25,8 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: routeUrls.auth, //just example
-        element: <HomePage />,
+        path: routeUrls.auth,
+        element: <AuthPage />,
       },
     ],
   },
