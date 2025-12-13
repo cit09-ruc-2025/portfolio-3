@@ -10,4 +10,8 @@ export const urls = {
     login: "/login",
     signup: "/user",
   },
+  search: {
+    media: "/search/media",
+    people: "/search/people",
+  },
 };

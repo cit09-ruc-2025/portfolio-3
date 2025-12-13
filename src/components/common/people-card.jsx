@@ -1,10 +1,10 @@
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Spinner from "../../../components/layout/spinner";
-import { useGetImage } from "../../../hooks/queries/images";
-import { routeUrls } from "../../../libs/route";
+import { useGetImage } from "../../hooks/queries/images";
+import { routeUrls } from "../../libs/route";
+import Spinner from "../layout/spinner";
 
-const MediaCrewCard = ({ people }) => {
+const PeopleCard = ({ people }) => {
   const { description, personName, roleName, peopleId } = people;
 
   const { isLoading, data } = useGetImage(peopleId);
@@ -39,7 +39,9 @@ const MediaCrewCard = ({ people }) => {
           className="m-0"
           style={{ textTransform: "capitalize", fontSize: "14px" }}
         >
-          {roleName === "actor" || roleName === "actress"
+          {roleName &&
+          description &&
+          (roleName === "actor" || roleName === "actress")
             ? description.replace(/['[\]]/g, "")
             : roleName}
         </p>
@@ -48,4 +50,4 @@ const MediaCrewCard = ({ people }) => {
   );
 };
 
-export default MediaCrewCard;
+export default PeopleCard;

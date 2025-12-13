@@ -8,12 +8,13 @@ import "./index.css";
 import MediaDetailPage from "./pages/media-detail/media-detail-page";
 import AuthPage from "./pages/auth/auth-page";
 import PublicRoutes from "./components/providers/public-routes";
-import MainLayout from "./components/layout/main-layout";
+import SearchPage from "./pages/search/search-page";
+import Layout from "./components/layout/layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
-    element: <MainLayout />,
+    element: <Layout />,
     children: [
       {
         path: routeUrls.homepage,
@@ -24,19 +25,17 @@ const router = createBrowserRouter([
         element: <MediaDetailPage />,
       },
       {
-        element: (
-          <PublicRoutes>
-            <Outlet />
-          </PublicRoutes>
-        ),
-        children: [
-          {
-            path: routeUrls.auth,
-            element: <AuthPage />,
-          },
-        ],
+        path: routeUrls.search,
+        element: <SearchPage />,
       },
     ],
+  },
+  {
+    element: (
+      <PublicRoutes>
+        <Outlet />
+      </PublicRoutes>
+    ),
   },
 ]);
 
