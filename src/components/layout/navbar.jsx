@@ -2,14 +2,12 @@ import { User } from "lucide-react";
 import {
   Navbar as BootstrapNavbar,
   Container,
-  Form,
-  FormControl,
   Dropdown,
-  Row,
 } from "react-bootstrap";
-import { routeUrls } from "../../libs/route";
 import { Link } from "react-router-dom";
+import { routeUrls } from "../../libs/route";
 import { getCookie } from "../../libs/utils/cookie";
+import SearchBar from "../common/search-bar";
 
 const Navbar = () => {
   const token = getCookie("token");
@@ -35,9 +33,7 @@ const Navbar = () => {
           Cinema
         </BootstrapNavbar.Brand>
         <div className="d-flex justify-content-end gap-2">
-          <Form className="d-flex mx-auto">
-            <FormControl type="search" placeholder="Search..." />
-          </Form>
+          <SearchBar />
 
           <Dropdown align="end">
             <Dropdown.Toggle
