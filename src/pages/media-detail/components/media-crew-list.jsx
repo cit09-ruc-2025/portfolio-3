@@ -1,8 +1,8 @@
-import { Button, Col, Row } from "react-bootstrap";
-import { useGetMediaPeople } from "../../hooks/queries/media";
-import Spinner from "../../components/layout/spinner";
-import MediaCrewCard from "./media-crew-card";
 import { useState } from "react";
+import { Button, Col, Row } from "react-bootstrap";
+import Spinner from "../../../components/layout/spinner";
+import { useGetMediaPeople } from "../../../hooks/queries/media";
+import MediaCrewCard from "./media-crew-card";
 
 const MediaCrewList = ({ id }) => {
   const [showAll, setShowAll] = useState(true);

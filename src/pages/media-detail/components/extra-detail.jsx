@@ -1,6 +1,6 @@
-import { Globe, Link2, LinkIcon } from "lucide-react";
+import { Globe } from "lucide-react";
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ExtraDetail = ({

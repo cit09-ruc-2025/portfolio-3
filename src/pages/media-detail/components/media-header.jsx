@@ -1,8 +1,8 @@
 import { Star } from "lucide-react";
-import { Badge, Col, Container } from "react-bootstrap";
-import { useGetImage } from "../../hooks/queries/images";
-import Spinner from "../../components/layout/spinner";
 import { useState } from "react";
+import { Badge, Col, Container } from "react-bootstrap";
+import Spinner from "../../../components/layout/spinner";
+import { useGetImage } from "../../../hooks/queries/images";
 
 const MediaHeader = ({ title, averageRating, id, hasEpisodes, isEpisode }) => {
   const [imgError, setImgError] = useState(false);

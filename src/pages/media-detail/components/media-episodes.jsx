@@ -1,18 +1,9 @@
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Row,
-  Tab,
-  Tabs,
-} from "react-bootstrap";
-import Spinner from "../../components/layout/spinner";
-import { useGetEpisodesList } from "../../hooks/queries/media";
 import { useEffect, useState } from "react";
-import { routeUrls } from "../../libs/route";
+import { Card, CardBody, CardTitle, Row, Tab, Tabs } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Spinner from "../../../components/layout/spinner";
+import { useGetEpisodesList } from "../../../hooks/queries/media";
+import { routeUrls } from "../../../libs/route";
 
 const MediaEpisodes = ({ id }) => {
   const [activeKey, setActiveKey] = useState("");
@@ -31,7 +22,7 @@ const MediaEpisodes = ({ id }) => {
   if (!data) return <>Error</>;
 
   return (
-    <Row className="justify-content-center episode-tab">
+    <Row className="justify-content-center episode-tab custom-tab">
       <Tabs id="season-tabs" activeKey={activeKey}>
         {data.map((season) => (
           <Tab eventKey={season.season} title={`Season ${season.season}`}>

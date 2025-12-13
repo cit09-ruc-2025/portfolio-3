@@ -3,10 +3,10 @@ import { useGetMediaDetail } from "../../hooks/queries/media";
 import Spinner from "../../components/layout/spinner";
 import { Badge, Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { Calendar, Clock, Star } from "lucide-react";
-import MediaHeader from "./media-header";
-import ExtraDetail from "./extra-detail";
-import MediaCrewList from "./media-crew-list";
-import MediaEpisodes from "./media-episodes";
+import MediaHeader from "./components/media-header";
+import MediaCrewList from "./components/media-crew-list";
+import ExtraDetail from "./components/extra-detail";
+import MediaEpisodes from "./components/media-episodes";
 
 const MediaDetailPage = () => {
   const { id } = useParams();

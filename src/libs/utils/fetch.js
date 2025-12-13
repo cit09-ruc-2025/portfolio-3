@@ -11,6 +11,7 @@ export const fetchHttp = async ({ url, options = {} }) => {
 
   const response = await fetch(finalUrl, {
     ...options,
+    ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -20,10 +21,9 @@ export const fetchHttp = async ({ url, options = {} }) => {
   const data = await response.json();
 
   if (!response.ok) {
-    const error = new Error("HTTP error");
-    error.status = response.status;
-    error.data = data;
-    throw error;
+
+    throw { ...data };
+
   }
 
   return data;
