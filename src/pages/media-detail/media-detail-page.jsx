@@ -7,6 +7,7 @@ import MediaHeader from "./components/media-header";
 import MediaCrewList from "./components/media-crew-list";
 import ExtraDetail from "./components/extra-detail";
 import MediaEpisodes from "./components/media-episodes";
+import MediaReviewList from "./components/media-review-list";
 
 const MediaDetailPage = () => {
   const { id } = useParams();
@@ -93,6 +94,10 @@ const MediaDetailPage = () => {
         <Row>
           <h5>Crew</h5>
           <MediaCrewList id={id} />
+        </Row>
+        <Row>
+          <h5>Reviews</h5>
+          <MediaReviewList id={id} />
         </Row>
         <ExtraDetail
           languages={languages}
