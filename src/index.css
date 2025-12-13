@@ -158,3 +158,33 @@ input {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.page-section {
+  width: 60%;
+  min-width: 36rem;
+  max-width: 600rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+
+  background-color: #f3f4f6;
+  border-radius: 12px;
+}
+
+.profile-action-button {
+  border-radius: 8px;
+  border: none;
+  height: 100%;
+}
+
+.profile-action-button-clickable {
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.profile-action-button-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary);
+}
