@@ -58,8 +58,9 @@ const LoginForm = () => {
 
     login(formData, {
       onSuccess: (data) => {
-        const { token } = data;
+        const { token, username } = data;
         setCookie("token", token, 1);
+        setCookie("username", username, 1);
         navigate(routeUrls.homepage);
       },
       onError: (error) => {

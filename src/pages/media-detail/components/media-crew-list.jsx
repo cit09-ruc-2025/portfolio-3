@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import Spinner from "../../../components/layout/spinner";
 import { useGetMediaPeople } from "../../../hooks/queries/media";
-import MediaCrewCard from "./media-crew-card";
+import PeopleCard from "../../../components/common/people-card";
 
 const MediaCrewList = ({ id }) => {
   const [showAll, setShowAll] = useState(true);
@@ -26,7 +26,7 @@ const MediaCrewList = ({ id }) => {
     <Row className="gy-3">
       {peopleList?.map((people, i) => (
         <Col key={i} xs={5} md={3}>
-          <MediaCrewCard people={people} />
+          <PeopleCard people={people} />
         </Col>
       ))}
       {data.pages[0].numberOfPages > 1 && (

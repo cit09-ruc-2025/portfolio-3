@@ -8,15 +8,26 @@ import "./index.css";
 import MediaDetailPage from "./pages/media-detail/media-detail-page";
 import AuthPage from "./pages/auth/auth-page";
 import PublicRoutes from "./components/providers/public-routes";
+import SearchPage from "./pages/search/search-page";
+import Layout from "./components/layout/layout";
 
 const router = createBrowserRouter([
   {
-    path: routeUrls.homepage,
-    element: <HomePage />,
-  },
-  {
-    path: routeUrls.media,
-    element: <MediaDetailPage />,
+    element: <Layout />,
+    children: [
+      {
+        path: routeUrls.homepage,
+        element: <HomePage />,
+      },
+      {
+        path: routeUrls.media,
+        element: <MediaDetailPage />,
+      },
+      {
+        path: routeUrls.search,
+        element: <SearchPage />,
+      },
+    ],
   },
   {
     element: (
