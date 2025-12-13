@@ -10,6 +10,7 @@ import AuthPage from "./pages/auth/auth-page";
 import PublicRoutes from "./components/providers/public-routes";
 import SearchPage from "./pages/search/search-page";
 import Layout from "./components/layout/layout";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
@@ -35,12 +36,6 @@ const router = createBrowserRouter([
         <Outlet />
       </PublicRoutes>
     ),
-    children: [
-      {
-        path: routeUrls.auth,
-        element: <AuthPage />,
-      },
-    ],
   },
 ]);
 
@@ -48,6 +43,7 @@ function App() {
   return (
     <QueryClientProvider>
       <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
