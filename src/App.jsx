@@ -36,6 +36,12 @@ const router = createBrowserRouter([
         <Outlet />
       </PublicRoutes>
     ),
+    children: [
+      {
+        path: routeUrls.auth,
+        element: <AuthPage />,
+      },
+    ],
   },
 ]);
 
