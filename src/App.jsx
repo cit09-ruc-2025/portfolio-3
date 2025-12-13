@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import MediaDetailPage from "./pages/media-detail/media-detail-page";
 import AuthPage from "./pages/auth/auth-page";
+import PublicRoutes from "./components/providers/public-routes";
 
 const router = createBrowserRouter([
   {
@@ -19,9 +20,9 @@ const router = createBrowserRouter([
   },
   {
     element: (
-      <ProtectedRoutes>
+      <PublicRoutes>
         <Outlet />
-      </ProtectedRoutes>
+      </PublicRoutes>
     ),
     children: [
       {

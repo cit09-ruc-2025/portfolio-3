@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useLogin } from "../../../hooks/queries/auth";
+import { setCookie } from "../../../libs/utils/cookie";
+import { useNavigate } from "react-router-dom";
+import { routeUrls } from "../../../libs/route";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +13,8 @@ const LoginForm = () => {
 
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const { mutate: login, isPending } = useLogin();
 
@@ -52,7 +57,11 @@ const LoginForm = () => {
     }
 
     login(formData, {
-      onSuccess: (data) => {},
+      onSuccess: (data) => {
+        const { token } = data;
+        setCookie("token", token, 1);
+        navigate(routeUrls.homepage);
+      },
       onError: (error) => {
         setErrorMessage(error?.message || "Login failed. Please try again.");
       },
