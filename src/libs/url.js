@@ -8,5 +8,9 @@ export const urls = {
   auth: {
     login: "/login",
     signup: "/user"
+  },
+  search: {
+    media: "/search/media",
+    people: "/search/people",
   }
 }

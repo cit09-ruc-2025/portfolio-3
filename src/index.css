@@ -131,3 +131,30 @@ input {
   border-color: var(--primary);
   box-shadow: none;
 }
+
+.search-result {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 12px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.search-result-people {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 12px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
