@@ -22,40 +22,22 @@ const ProfilePage = () => {
           <CardGrid columns={3}>
             <ProfileActionButton onClick={() => {}}>
               <Container className="d-flex flex-column gap-1">
-                <Row>
-                  <Col xs={2}>
-                    <Clock className="action-button-icon" />
-                  </Col>
-                  <Col>
-                    <h5>Watch History</h5>
-                  </Col>
-                </Row>
+                <Clock className="action-button-icon mb-1" />
+                <h5 className="mb-0">Watch History</h5>
                 <p>View your watch history</p>
               </Container>
             </ProfileActionButton>
             <ProfileActionButton onClick={() => {}}>
               <Container className="d-flex flex-column gap-1">
-                <Row>
-                  <Col xs={2}>
-                    <Search className="action-button-icon" />
-                  </Col>
-                  <Col>
-                    <h5>Search History</h5>
-                  </Col>
-                </Row>
+                <Search className="action-button-icon mb-1" />
+                <h5 className="mb-0">Search History</h5>
                 <p>Recent search history</p>
               </Container>
             </ProfileActionButton>
             <ProfileActionButton onClick={() => {}}>
               <Container className="d-flex flex-column gap-1">
-                <Row>
-                  <Col xs={2}>
-                    <Star className="action-button-icon" />
-                  </Col>
-                  <Col>
-                    <h5>Favorites</h5>
-                  </Col>
-                </Row>
+                <Star className="action-button-icon mb-1" />
+                <h5 className="mb-0">Favorites</h5>
                 <p>Your favorite content</p>
               </Container>
             </ProfileActionButton>
