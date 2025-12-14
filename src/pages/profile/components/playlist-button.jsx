@@ -14,11 +14,11 @@ const PlaylistButton = ({ playlist }) => {
       }}
     >
       <Container className="d-flex flex-column gap-1">
-        <Row>
-          <Col>
+        <Row className="justify-content-between align-items-center">
+          <Col xs="auto">
             <List className="action-button-icon mb-1" />
           </Col>
-          <Col>
+          <Col xs="auto">
             <p>
               {mediaIds.length > 0 ? `${mediaIds.length} items` : "0 items"}
             </p>
