@@ -12,6 +12,7 @@ import SearchPage from "./pages/search/search-page";
 import Layout from "./components/layout/layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProfilePage from "./pages/profile/profile-page";
+import PlaylistPage from "./pages/playlist/playlist-page";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       { path: routeUrls.profile, element: <ProfilePage /> },
+      { path: routeUrls.playlist, element: <PlaylistPage /> },
     ],
   },
   {

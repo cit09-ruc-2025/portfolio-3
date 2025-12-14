@@ -15,3 +15,16 @@ export const useGetPlaylists = (id) => {
       }),
   });
 };
+
+export const useGetPlaylist = (id) => {
+  return useQuery({
+    queryKey: ["playlist", id],
+    queryFn: () =>
+      fetchHttp({
+        url: urls.playlist.userplaylist.replace(":id", id),
+        options: {
+          method: HTTP_METHODS.GET,
+        },
+      }),
+  });
+};

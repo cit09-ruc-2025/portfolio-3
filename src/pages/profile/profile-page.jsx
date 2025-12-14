@@ -60,7 +60,7 @@ const ProfilePage = () => {
 
         <Row>
           <h4>Playlists</h4>
-          <PlaylistList id={data.id} />
+          <PlaylistList id={data.id} username={username} />
         </Row>
 
         <Row>
