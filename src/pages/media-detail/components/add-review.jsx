@@ -59,7 +59,8 @@ const AddReview = ({ mediaId, rating, review, setIsEdit }) => {
         if (setIsEdit) {
           setIsEdit(false);
         }
-        queryClient.invalidateQueries({ queryKey: ["media-reviews"] });
+        queryClient.invalidateQueries(["media-reviews"]);
+        queryClient.invalidateQueries(["media-user-status"]);
       },
       onError: (error) => {
         setErrors(error?.errors);
@@ -87,16 +88,19 @@ const AddReview = ({ mediaId, rating, review, setIsEdit }) => {
                       style={{ cursor: "pointer" }}
                       fill={starValue <= formData.rating ? "#f5c518" : "none"}
                       stroke={starValue <= formData.rating ? "#f5c518" : "#ccc"}
-                      onClick={() =>
-                        setFormData((prev) => ({ ...prev, rating: starValue }))
-                      }
+                      onClick={() => {
+                        setErrors((prev) => ({ ...prev, rating: "" }));
+                        setFormData((prev) => ({ ...prev, rating: starValue }));
+                      }}
                     />
                   );
                 })}
               </div>
 
               {errors?.rating && (
-                <Form.Text type="invalid">{errors.rating}</Form.Text>
+                <Form.Text type="invalid" className="text-danger">
+                  {errors.rating}
+                </Form.Text>
               )}
             </Form.Group>
 

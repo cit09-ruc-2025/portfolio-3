@@ -4,7 +4,7 @@ import { getCookie } from "../../../libs/utils/cookie";
 import ReviewMenu from "./review-menu";
 
 const MediaReviewCard = ({ userReview, setIsEdit }) => {
-  const { review, username, rating, createdAt, userId } = userReview;
+  const { review, username, rating, createdAt, userId, mediaId } = userReview;
 
   const loggedUserId = getCookie("userId");
 
@@ -37,7 +37,9 @@ const MediaReviewCard = ({ userReview, setIsEdit }) => {
                 />
               );
             })}
-            {loggedUserId === userId && <ReviewMenu setIsEdit={setIsEdit} />}
+            {loggedUserId === userId && (
+              <ReviewMenu setIsEdit={setIsEdit} id={mediaId} />
+            )}
           </div>
         </div>
         {review && <p className="m-0">{review}</p>}

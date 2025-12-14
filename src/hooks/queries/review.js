@@ -5,11 +5,22 @@ import { HTTP_METHODS } from "../../libs/constants";
 
 export const useAddReview = (id) => {
   return useMutation({
-    mutationFn: async (payload) => await fetchHttp({
-      url: urls.review.add.replace(":mediaId", id),
+    mutationFn: (payload) => fetchHttp({
+      url: urls.review.base.replace(":mediaId", id),
       options: {
         method: HTTP_METHODS.PUT,
         body: payload
+      }
+    })
+  });
+};
+
+export const useDeleteReview = (id) => {
+  return useMutation({
+    mutationFn: () => fetchHttp({
+      url: urls.review.base.replace(":mediaId", id),
+      options: {
+        method: HTTP_METHODS.DELETE,
       }
     })
   });

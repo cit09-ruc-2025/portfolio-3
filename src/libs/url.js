@@ -23,6 +23,6 @@ export const urls = {
     reviews: "/user/:id/reviews",
   },
   review: {
-    add: "/review/:mediaId"
+    base: "/review/:mediaId"
   }
 };
