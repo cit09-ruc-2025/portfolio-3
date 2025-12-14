@@ -2,17 +2,12 @@ import Rating from "../../../components/common/rating";
 import { Star } from "lucide-react";
 import { getCookie } from "../../../libs/utils/cookie";
 import ReviewMenu from "./review-menu";
+import { getFormattedDate } from "../../../libs/utils";
 
 const MediaReviewCard = ({ userReview, setIsEdit }) => {
   const { review, username, rating, createdAt, userId, mediaId } = userReview;
 
   const loggedUserId = getCookie("userId");
-
-  const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   return (
     <>
@@ -21,7 +16,7 @@ const MediaReviewCard = ({ userReview, setIsEdit }) => {
           <div className="d-flex flex-column">
             <p className="m-0 fw-semibold">{username}</p>
             <p className="m-0" style={{ fontSize: "14px", color: "grey" }}>
-              {formattedDate}
+              {getFormattedDate(createdAt)}
             </p>
           </div>
           <div className="d-flex align-items-top" style={{ gap: "2px" }}>

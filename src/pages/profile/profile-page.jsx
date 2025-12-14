@@ -14,61 +14,52 @@ const ProfilePage = () => {
   const { username } = useParams();
   const { isLoading, data } = useGetUserDetails(username);
 
-  if (isLoading)
-    return (
-      <PageSection>
-        <Spinner />
-      </PageSection>
-    );
+  if (isLoading) return <Spinner />;
   if (!data) return <p>An error occurred.</p>;
 
   return (
-    <PageSection>
-      <Container className="d-flex flex-column gap-4">
-        <Row>
-          <CardGrid columns={1}>
-            <ProfileActionButton>
-              <ProfileCard user={data} />
-            </ProfileActionButton>
-          </CardGrid>
-        </Row>
-        <Row>
-          <CardGrid columns={3}>
-            <ProfileActionButton onClick={() => {}}>
-              <Container className="d-flex flex-column gap-1">
-                <Clock className="action-button-icon mb-1" />
-                <h5 className="mb-0">Watch History</h5>
-                <p>View your watch history</p>
-              </Container>
-            </ProfileActionButton>
-            <ProfileActionButton onClick={() => {}}>
-              <Container className="d-flex flex-column gap-1">
-                <Search className="action-button-icon mb-1" />
-                <h5 className="mb-0">Search History</h5>
-                <p>Recent search history</p>
-              </Container>
-            </ProfileActionButton>
-            <ProfileActionButton onClick={() => {}}>
-              <Container className="d-flex flex-column gap-1">
-                <Star className="action-button-icon mb-1" />
-                <h5 className="mb-0">Favorites</h5>
-                <p>Your favorite content</p>
-              </Container>
-            </ProfileActionButton>
-          </CardGrid>
-        </Row>
+    <Container className="d-flex flex-column gap-4">
+      <Row>
+        <CardGrid columns={1}>
+          <ProfileCard user={data} />
+        </CardGrid>
+      </Row>
+      <Row>
+        <CardGrid columns={3}>
+          <ProfileActionButton onClick={() => {}}>
+            <Container className="d-flex flex-column gap-1">
+              <Clock className="action-button-icon mb-1" />
+              <h5 className="mb-0">Watch History</h5>
+              <p>View your watch history</p>
+            </Container>
+          </ProfileActionButton>
+          <ProfileActionButton onClick={() => {}}>
+            <Container className="d-flex flex-column gap-1">
+              <Search className="action-button-icon mb-1" />
+              <h5 className="mb-0">Search History</h5>
+              <p>Recent search history</p>
+            </Container>
+          </ProfileActionButton>
+          <ProfileActionButton onClick={() => {}}>
+            <Container className="d-flex flex-column gap-1">
+              <Star className="action-button-icon mb-1" />
+              <h5 className="mb-0">Favorites</h5>
+              <p>Your favorite content</p>
+            </Container>
+          </ProfileActionButton>
+        </CardGrid>
+      </Row>
 
-        <Row>
-          <h4>Playlists</h4>
-          <PlaylistList id={data.id} />
-        </Row>
+      <Row>
+        <h4>Playlists</h4>
+        <PlaylistList id={data.id} />
+      </Row>
 
-        <Row>
-          <h4>Reviews</h4>
-          <ReviewList id={data.id} />
-        </Row>
-      </Container>
-    </PageSection>
+      <Row>
+        <h4>Reviews</h4>
+        <ReviewList id={data.id} />
+      </Row>
+    </Container>
   );
 };
 
