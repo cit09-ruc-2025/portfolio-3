@@ -7,6 +7,7 @@
   --accent: #edfeee;
   --tertiary: #e6e4d9;
   --primary-rgb: 21, 92, 40;
+  --rating: #ffc107;
 }
 
 #root {
@@ -187,6 +188,11 @@ input {
 
 .profile-action-button-clickable p {
   color: #5e5e5e;
+}
+
+.muted-paragraph {
+  color: #5e5e5e;
+  font-size: small;
 }
 
 .profile-action-button-clickable:hover {

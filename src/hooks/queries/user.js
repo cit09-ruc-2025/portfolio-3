@@ -15,3 +15,16 @@ export const useGetUserDetails = (username) => {
       }),
   });
 };
+
+export const useGetUserReviews = (id) => {
+  return useQuery({
+    queryKey: ["userReviews", id],
+    queryFn: () =>
+      fetchHttp({
+        url: urls.user.reviews.replace(":id", id),
+        options: {
+          method: HTTP_METHODS.GET,
+        },
+      }),
+  });
+};

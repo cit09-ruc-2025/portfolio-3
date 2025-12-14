@@ -8,6 +8,7 @@ import { Clock, Search, Star } from "lucide-react";
 import PlaylistList from "./components/playlist-list";
 import { useGetUserDetails } from "../../hooks/queries/user";
 import Spinner from "../../components/layout/spinner";
+import ReviewList from "./components/review-list";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -56,13 +57,16 @@ const ProfilePage = () => {
             </ProfileActionButton>
           </CardGrid>
         </Row>
-        {data && (
-          <Row>
-            <h4>Playlists</h4>
-            <PlaylistList id={data.id} />
-          </Row>
-        )}
-        <h4>Reviews</h4>
+
+        <Row>
+          <h4>Playlists</h4>
+          <PlaylistList id={data.id} />
+        </Row>
+
+        <Row>
+          <h4>Reviews</h4>
+          <ReviewList id={data.id} />
+        </Row>
       </Container>
     </PageSection>
   );

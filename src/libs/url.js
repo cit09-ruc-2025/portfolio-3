@@ -19,5 +19,6 @@ export const urls = {
   },
   user: {
     details: "/user/:username",
+    reviews: "/user/:id/reviews",
   },
 };
