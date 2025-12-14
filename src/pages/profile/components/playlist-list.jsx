@@ -1,6 +1,6 @@
 import { Spinner } from "react-bootstrap";
 import { useGetPlaylists } from "../../../hooks/queries/playlist";
-import CardGrid from "./card-grid";
+import CardGrid from "../../../components/layout/card-grid";
 import PlaylistButton from "./playlist-button";
 
 const PlaylistList = ({ id }) => {
