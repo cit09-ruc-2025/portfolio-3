@@ -1,13 +1,44 @@
 import Rating from "../../../components/common/rating";
+import { Star } from "lucide-react";
+import { Row } from "react-bootstrap";
 
 const MediaReviewCard = ({ userReview }) => {
-  const { review, username } = userReview;
+  const { review, username, rating, createdAt } = userReview;
+
+  const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <>
-      <p className="m-0 fw-semibold">{username}</p>
-      <p>{review}</p>
-      <Rating rating={userReview.rating} />
+      <div className="d-flex flex-column gap-1">
+        <div className="w-100 d-flex flex-row justify-content-between">
+          <div className="d-flex flex-column">
+            <p className="m-0 fw-semibold">{username}</p>
+            <p className="m-0" style={{ fontSize: "14px", color: "grey" }}>
+              {formattedDate}
+            </p>
+          </div>
+          <div className="d-flex" style={{ gap: "2px" }}>
+            {Array.from({ length: 10 }).map((_, index) => {
+              const starValue = index + 1;
+
+              return (
+                <Star
+                  key={starValue}
+                  size={18}
+                  fill={starValue <= rating ? "#f5c518" : "none"}
+                  stroke={starValue <= rating ? "#f5c518" : "#ccc"}
+                />
+              );
+            })}
+          </div>
+        </div>
+        {review && <p className="m-0">{review}</p>}
+      </div>
+      <hr className="mb-0" />
     </>
   );
 };

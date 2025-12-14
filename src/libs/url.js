@@ -21,4 +21,7 @@ export const urls = {
     details: "/user/:username",
     reviews: "/user/:id/reviews",
   },
+  review: {
+    add: "/review/:mediaId"
+  }
 };

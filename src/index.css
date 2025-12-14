@@ -206,3 +206,9 @@ input {
 .action-button-icon {
   color: var(--primary);
 }
+
+.rating .star:hover,
+.star:hover ~ .star {
+  stroke: #f5c518;
+  fill: #f5c518;
+}

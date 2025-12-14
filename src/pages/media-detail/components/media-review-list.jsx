@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { useGetMediaReviews } from "../../../hooks/queries/media";
-import { Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col, Spinner, Button } from "react-bootstrap";
 import MediaReviewCard from "./media-review-card";
+import { getCookie } from "../../../libs/utils/cookie";
+import AddReview from "./add-review";
 
 const MediaReviewList = ({ id }) => {
   const [showAll, setShowAll] = useState(true);
   const { isLoading, data, fetchNextPage, hasNextPage } =
     useGetMediaReviews(id);
 
+  const token = getCookie("token");
+
   if (isLoading) {
     return <Spinner />;
-  }
-
-  if (!data) {
-    return <p>Be the first to write a review!</p>;
   }
 
   const reviews = showAll
@@ -24,12 +24,19 @@ const MediaReviewList = ({ id }) => {
 
   return (
     <Row className="gy-3">
-      {reviews?.map((review, i) => (
-        <Col key={i} xs={5} md={3}>
-          <MediaReviewCard userReview={review} />
-        </Col>
-      ))}
-      {data.pages[0].numberOfPages > 1 && (
+      {token && <AddReview mediaId={id} />}
+      {reviews?.length > 0 ? (
+        <div className="d-flex flex-column gap-2">
+          {reviews?.map((review, i) => (
+            <div key={i}>
+              <MediaReviewCard userReview={review} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Be the first to write a review!</p>
+      )}
+      {data?.pages[0]?.numberOfPages > 1 && (
         <Row className="justify-content-center" style={{ marginTop: "70px" }}>
           <Col xs="auto">
             <Button
