@@ -11,6 +11,7 @@ import PublicRoutes from "./components/providers/public-routes";
 import SearchPage from "./pages/search/search-page";
 import Layout from "./components/layout/layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import ProfilePage from "./pages/profile/profile-page";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
         path: routeUrls.search,
         element: <SearchPage />,
       },
+      { path: routeUrls.profile, element: <ProfilePage /> },
     ],
   },
   {

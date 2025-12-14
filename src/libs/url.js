@@ -14,4 +14,11 @@ export const urls = {
     media: "/search/media",
     people: "/search/people",
   },
+  playlist: {
+    userplaylists: "/playlist/user/:id",
+  },
+  user: {
+    details: "/user/:username",
+    reviews: "/user/:id/reviews",
+  },
 };
