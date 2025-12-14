@@ -2,7 +2,7 @@ import { Card, Row, Col } from "react-bootstrap";
 
 function ProfileCard({ username }) {
   return (
-    <Card className="profile-action-button">
+    <Card className="profile-action-button" style={{ border: "none" }}>
       <Card.Body>
         <Row className="align-items-center">
           <Col xs="auto">
