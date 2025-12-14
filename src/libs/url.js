@@ -5,6 +5,7 @@ export const urls = {
     people: "/media/:id/people",
     episodes: "/media/:id/episodes",
     reviews: "/media/:id/reviews",
+    userStatus: "/media/:id/user-status",
   },
   auth: {
     login: "/login",
@@ -21,4 +22,7 @@ export const urls = {
     details: "/user/:username",
     reviews: "/user/:id/reviews",
   },
+  review: {
+    base: "/review/:mediaId"
+  }
 };

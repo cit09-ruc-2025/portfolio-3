@@ -206,3 +206,19 @@ input {
 .action-button-icon {
   color: var(--primary);
 }
+
+.rating .star:hover,
+.star:hover ~ .star {
+  stroke: #f5c518;
+  fill: #f5c518;
+}
+
+.secondary-button,
+.secondary-button:first-child:active {
+  background: #b6b6b6;
+  border: 0;
+}
+
+.secondary-button:hover {
+  background: #a5a3a3;
+}
