@@ -3,11 +3,15 @@ import PageSection from "../../components/layout/page-section";
 import CardGrid from "./components/card-grid";
 import ProfileActionButton from "./components/profile-action-button";
 import ProfileCard from "./components/profile-card";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { Clock, Search, Star } from "lucide-react";
+import PlaylistList from "./components/playlist-list";
+import { useGetUserDetails } from "../../hooks/queries/user";
 
 const ProfilePage = () => {
   const { username } = useParams();
+  const { data } = useGetUserDetails(username);
+
   return (
     <PageSection>
       <Container className="d-flex flex-column gap-4">
@@ -43,20 +47,12 @@ const ProfilePage = () => {
             </ProfileActionButton>
           </CardGrid>
         </Row>
-        <Row>
-          <h4>Playlists</h4>
-          <CardGrid columns={3}>
-            <ProfileActionButton onClick={() => {}}>
-              Playlist1
-            </ProfileActionButton>
-            <ProfileActionButton onClick={() => {}}>
-              Playlist2
-            </ProfileActionButton>
-            <ProfileActionButton onClick={() => {}}>
-              Playlist3
-            </ProfileActionButton>
-          </CardGrid>
-        </Row>
+        {data && (
+          <Row>
+            <h4>Playlists</h4>
+            <PlaylistList id={data.id} />
+          </Row>
+        )}
         <h4>Reviews</h4>
       </Container>
     </PageSection>
