@@ -1,10 +1,11 @@
 import { Card, Row, Col } from "react-bootstrap";
 
-function ProfileCard({ username }) {
+function ProfileCard({ user }) {
+  const { username, createdAt } = user;
   return (
     <Card className="profile-action-button" style={{ border: "none" }}>
       <Card.Body>
-        <Row className="align-items-center">
+        <Row>
           <Col xs="auto">
             <img
               className="rounded-circle"
@@ -15,6 +16,9 @@ function ProfileCard({ username }) {
 
           <Col>
             <h5>{username}</h5>
+          </Col>
+          <Col>
+            <b>Member Since: </b> {createdAt}
           </Col>
         </Row>
       </Card.Body>

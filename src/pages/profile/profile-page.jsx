@@ -7,10 +7,19 @@ import { Container, Row } from "react-bootstrap";
 import { Clock, Search, Star } from "lucide-react";
 import PlaylistList from "./components/playlist-list";
 import { useGetUserDetails } from "../../hooks/queries/user";
+import Spinner from "../../components/layout/spinner";
 
 const ProfilePage = () => {
   const { username } = useParams();
-  const { data } = useGetUserDetails(username);
+  const { isLoading, data } = useGetUserDetails(username);
+
+  if (isLoading)
+    return (
+      <PageSection>
+        <Spinner />
+      </PageSection>
+    );
+  if (!data) return <p>An error occurred.</p>;
 
   return (
     <PageSection>
@@ -18,7 +27,7 @@ const ProfilePage = () => {
         <Row>
           <CardGrid columns={1}>
             <ProfileActionButton>
-              <ProfileCard username={username} />
+              <ProfileCard user={data} />
             </ProfileActionButton>
           </CardGrid>
         </Row>
