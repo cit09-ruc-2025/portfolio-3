@@ -1,14 +1,13 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
 import { Button, Card, CardBody, CardTitle, Form } from "react-bootstrap";
-import { useAddReview } from "../../../hooks/queries/review";
-import { QueryClient } from "@tanstack/react-query";
 import { queryClient } from "../../../context/query-client-provider";
+import { useAddReview } from "../../../hooks/queries/review";
 
-const AddReview = ({ mediaId }) => {
+const AddReview = ({ mediaId, rating, review, setIsEdit }) => {
   const [formData, setFormData] = useState({
-    rating: 0,
-    review: "",
+    rating: rating || 0,
+    review: review || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -57,6 +56,9 @@ const AddReview = ({ mediaId }) => {
 
     addReview(formData, {
       onSuccess: () => {
+        if (setIsEdit) {
+          setIsEdit(false);
+        }
         queryClient.invalidateQueries({ queryKey: ["media-reviews"] });
       },
       onError: (error) => {
@@ -67,7 +69,9 @@ const AddReview = ({ mediaId }) => {
 
   return (
     <Card style={{ padding: "16px 20px", gap: "12px" }}>
-      <CardTitle style={{ fontSize: "16px" }}>Add Your Review</CardTitle>
+      {!rating && (
+        <CardTitle style={{ fontSize: "16px" }}>Add Your Review</CardTitle>
+      )}
       <CardBody style={{ padding: "0" }}>
         <Form onSubmit={handleSubmit}>
           <div className="d-flex flex-column gap-2">
@@ -113,13 +117,24 @@ const AddReview = ({ mediaId }) => {
               )}
             </Form.Group>
 
-            <Button
-              type="submit"
-              className="primary-button"
-              disabled={isPending}
-            >
-              Submit
-            </Button>
+            <div className="d-flex gap-2">
+              <Button
+                type="submit"
+                className="primary-button"
+                style={{ width: "fit-content" }}
+                disabled={isPending}
+              >
+                Submit
+              </Button>
+              {setIsEdit && (
+                <Button
+                  className="primary-button"
+                  onClick={() => setIsEdit(false)}
+                >
+                  Cancel
+                </Button>
+              )}
+            </div>
           </div>
         </Form>
       </CardBody>

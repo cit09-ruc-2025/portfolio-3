@@ -5,7 +5,7 @@ import { HTTP_METHODS } from "../../libs/constants";
 
 export const useAddReview = (id) => {
   return useMutation({
-    mutationFn: (payload) => fetchHttp({
+    mutationFn: async (payload) => await fetchHttp({
       url: urls.review.add.replace(":mediaId", id),
       options: {
         method: HTTP_METHODS.PUT,

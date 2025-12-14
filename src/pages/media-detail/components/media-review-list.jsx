@@ -5,12 +5,15 @@ import MediaReviewCard from "./media-review-card";
 import { getCookie } from "../../../libs/utils/cookie";
 import AddReview from "./add-review";
 
-const MediaReviewList = ({ id }) => {
+const MediaReviewList = ({ id, isReviewed }) => {
   const [showAll, setShowAll] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+
   const { isLoading, data, fetchNextPage, hasNextPage } =
     useGetMediaReviews(id);
 
   const token = getCookie("token");
+  const loggedInUserId = getCookie("userId");
 
   if (isLoading) {
     return <Spinner />;
@@ -24,12 +27,21 @@ const MediaReviewList = ({ id }) => {
 
   return (
     <Row className="gy-3">
-      {token && <AddReview mediaId={id} />}
+      {token && !isReviewed && <AddReview mediaId={id} />}
       {reviews?.length > 0 ? (
         <div className="d-flex flex-column gap-2">
           {reviews?.map((review, i) => (
             <div key={i}>
-              <MediaReviewCard userReview={review} />
+              {isEdit && loggedInUserId === review.userId ? (
+                <AddReview
+                  mediaId={id}
+                  review={review.review}
+                  rating={review.rating}
+                  setIsEdit={setIsEdit}
+                />
+              ) : (
+                <MediaReviewCard userReview={review} setIsEdit={setIsEdit} />
+              )}
             </div>
           ))}
         </div>

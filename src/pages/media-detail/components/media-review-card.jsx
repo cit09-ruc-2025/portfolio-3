@@ -1,9 +1,12 @@
 import Rating from "../../../components/common/rating";
 import { Star } from "lucide-react";
-import { Row } from "react-bootstrap";
+import { getCookie } from "../../../libs/utils/cookie";
+import ReviewMenu from "./review-menu";
 
-const MediaReviewCard = ({ userReview }) => {
-  const { review, username, rating, createdAt } = userReview;
+const MediaReviewCard = ({ userReview, setIsEdit }) => {
+  const { review, username, rating, createdAt, userId } = userReview;
+
+  const loggedUserId = getCookie("userId");
 
   const formattedDate = new Date(createdAt).toLocaleDateString("en-US", {
     year: "numeric",
@@ -21,7 +24,7 @@ const MediaReviewCard = ({ userReview }) => {
               {formattedDate}
             </p>
           </div>
-          <div className="d-flex" style={{ gap: "2px" }}>
+          <div className="d-flex align-items-top" style={{ gap: "2px" }}>
             {Array.from({ length: 10 }).map((_, index) => {
               const starValue = index + 1;
 
@@ -34,6 +37,7 @@ const MediaReviewCard = ({ userReview }) => {
                 />
               );
             })}
+            {loggedUserId === userId && <ReviewMenu setIsEdit={setIsEdit} />}
           </div>
         </div>
         {review && <p className="m-0">{review}</p>}
