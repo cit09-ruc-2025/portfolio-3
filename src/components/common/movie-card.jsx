@@ -7,24 +7,14 @@ import {
   Col,
   Row,
 } from "react-bootstrap";
-import { useGetMediaImage } from "../../hooks/queries/images";
 import Spinner from "../layout/spinner";
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { routeUrls } from "../../libs/route";
+import MovieImage from "./movie-image";
 
 const MovieCard = ({ movieDetail }) => {
-  const { id, title, imdbRating, poster, mediaType, releaseYear } = movieDetail;
-
-  const { isLoading, data } = useGetMediaImage(id, mediaType);
-
-  const img = data?.posters?.[0];
-
-  const imgUrl = img
-    ? `${import.meta.env.VITE_IMAGE_BASE_URL}/w185/${img.file_path}`
-    : poster
-    ? poster
-    : "/fallback.jpg";
+  const { id, title, imdbRating, releaseYear } = movieDetail;
 
   return (
     <Link
@@ -33,18 +23,7 @@ const MovieCard = ({ movieDetail }) => {
     >
       <Card>
         <div style={{ height: "300px" }} className="d-flex flex-column">
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            <CardImg
-              style={{ objectFit: "cover", height: "300px" }}
-              src={imgUrl}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "/fallback.jpg";
-              }}
-            />
-          )}
+          <MovieImage movieDetail={movieDetail} />
         </div>
 
         <Badge
