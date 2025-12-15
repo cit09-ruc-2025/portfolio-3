@@ -54,6 +54,7 @@ const MediaDetailPage = () => {
           hasEpisodes={hasEpisodes}
           isEpisode={isEpisode}
           isWatched={mediaUserStatus?.isWatched}
+          isFavorite={mediaUserStatus?.isFavorite}
         />
       </Col>
       <Container className="mt-5 d-flex flex-column gap-5">

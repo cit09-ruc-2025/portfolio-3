@@ -30,11 +30,7 @@ const ProfilePage = () => {
       </Row>
       <Row>
         <CardGrid columns={3}>
-          <ProfileActionButton
-            onClick={() => {
-              navigate(routeUrls.watchedList);
-            }}
-          >
+          <ProfileActionButton onClick={() => navigate(routeUrls.watchedList)}>
             <Container className="d-flex flex-column gap-1">
               <Clock className="action-button-icon mb-1" />
               <h5 className="mb-0">Watch History</h5>
@@ -42,9 +38,7 @@ const ProfilePage = () => {
             </Container>
           </ProfileActionButton>
           <ProfileActionButton
-            onClick={() => {
-              navigate(routeUrls.searchHistory);
-            }}
+            onClick={() => navigate(routeUrls.searchHistory)}
           >
             <Container className="d-flex flex-column gap-1">
               <Search className="action-button-icon mb-1" />
@@ -52,7 +46,7 @@ const ProfilePage = () => {
               <p>Recent search history</p>
             </Container>
           </ProfileActionButton>
-          <ProfileActionButton onClick={() => {}}>
+          <ProfileActionButton onClick={() => navigate(routeUrls.favorites)}>
             <Container className="d-flex flex-column gap-1">
               <Star className="action-button-icon mb-1" />
               <h5 className="mb-0">Favorites</h5>

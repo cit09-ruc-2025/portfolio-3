@@ -1,4 +1,4 @@
-import { Clock, ClockCheck, Star } from "lucide-react";
+import { Clock, ClockCheck, Heart, Star } from "lucide-react";
 import { useState } from "react";
 import { Badge, Button, Col, Container } from "react-bootstrap";
 import Spinner from "../../../components/layout/spinner";
@@ -9,6 +9,7 @@ import {
   useRemoveFromWatched,
 } from "../../../hooks/queries/watchedList";
 import { queryClient } from "../../../context/query-client-provider";
+import AddToFav from "../../../components/common/add-to-fav";
 
 const MediaHeader = ({
   title,
@@ -17,6 +18,7 @@ const MediaHeader = ({
   hasEpisodes,
   isEpisode,
   isWatched,
+  isFavorite,
 }) => {
   const [imgError, setImgError] = useState(false);
 
@@ -100,6 +102,7 @@ const MediaHeader = ({
           <h1>{title}</h1>
           {!!token && !isEpisode && (
             <>
+              <AddToFav isFavorite={isFavorite} isMedia id={id} />
               <Button
                 className={`${
                   isWatched ? "primary-button" : "secondary-button"

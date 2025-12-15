@@ -15,6 +15,7 @@ import ProfilePage from "./pages/profile/profile-page";
 import SearchHistoryPage from "./pages/search-history/search-history-page";
 import WatchedListPage from "./pages/watched-list/watched-list-page";
 import PeopleDetailPage from "./pages/people-detail/people-detail-page";
+import FavoritePage from "./pages/favorite/favorite-page";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: routeUrls.watchedList,
         element: <WatchedListPage />,
+      },
+      {
+        path: routeUrls.favorites,
+        element: <FavoritePage />,
       },
     ],
   },
