@@ -14,6 +14,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProfilePage from "./pages/profile/profile-page";
 import SearchHistoryPage from "./pages/search-history/search-history-page";
 import WatchedListPage from "./pages/watched-list/watched-list-page";
+import PeopleDetailPage from "./pages/people-detail/people-detail-page";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: routeUrls.search,
         element: <SearchPage />,
+      },
+      {
+        path: routeUrls.person,
+        element: <PeopleDetailPage />,
       },
     ],
   },
