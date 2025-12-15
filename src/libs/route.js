@@ -4,7 +4,7 @@ export const routeUrls = {
   favorites: '/favorites',
   profile: '/:username',
   playlist: '/:username/playlist/:id',
-  watchHistory: '/watch-history',
+  watchedList: '/watched-list',
   searchHistory: '/search-history',
   person: '/person/:id',
   media: '/media/:id',

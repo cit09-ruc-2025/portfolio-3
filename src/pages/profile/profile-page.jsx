@@ -32,7 +32,7 @@ const ProfilePage = () => {
         <CardGrid columns={3}>
           <ProfileActionButton
             onClick={() => {
-              navigate(routeUrls.watchHistory);
+              navigate(routeUrls.watchedList);
             }}
           >
             <Container className="d-flex flex-column gap-1">

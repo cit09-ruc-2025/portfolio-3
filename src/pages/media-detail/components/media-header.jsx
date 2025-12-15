@@ -98,18 +98,16 @@ const MediaHeader = ({
       >
         <div className="d-flex align-items-center gap-2">
           <h1>{title}</h1>
-          {!!token && (
+          {!!token && !isEpisode && (
             <>
               <Button
-                className="media-action"
-                variant="outline"
-                style={{
-                  padding: "0",
-                }}
+                className={`${
+                  isWatched ? "primary-button" : "secondary-button"
+                } media-action-button`}
                 onClick={handleWatched}
                 disabled={isPending || isRemovePending}
               >
-                {isWatched ? <ClockCheck /> : <Clock />}
+                {isWatched ? "Watched" : "Mark as Watched"}
               </Button>
             </>
           )}

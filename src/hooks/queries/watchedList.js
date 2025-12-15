@@ -7,10 +7,11 @@ export const useWatchedList = (userId) => {
   return useInfiniteQuery({
     queryKey: ["watched-list", userId],
     queryFn: ({ pageParam = 1 }) => fetchHttp({
-      url: urls.watchedList.media.replace(":id", userId), options: {
+      url: urls.watchedList.base.replace(":id", userId), options: {
         method: HTTP_METHODS.GET,
         params: {
           page: pageParam,
+
         }
       }
     }),
