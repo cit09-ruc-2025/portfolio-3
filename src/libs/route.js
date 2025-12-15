@@ -3,7 +3,7 @@ export const routeUrls = {
   auth: '/auth',
   favorites: '/favorites',
   profile: '/:username',
-  playlist: '/:username/playlist/:id',
+  playlist: '/playlist/:id',
   watchedList: '/watched-list',
   searchHistory: '/search-history',
   person: '/person/:id',

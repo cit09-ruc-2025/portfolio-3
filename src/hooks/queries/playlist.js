@@ -69,3 +69,14 @@ export const useRemoveFromPlaylist = (playlistId, isMedia) => {
     },
   });
 };
+
+export const useDeletePlaylist = (id) => {
+  return useMutation({
+    mutationFn: () => fetchHttp({
+      url: urls.playlist.delete.replace(":playlistId", id),
+      options: {
+        method: HTTP_METHODS.DELETE,
+      }
+    })
+  });
+};
