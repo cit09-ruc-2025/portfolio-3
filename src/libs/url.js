@@ -17,8 +17,10 @@ export const urls = {
     people: "/search/people",
   },
   playlist: {
+    base: "/playlist/create",
+    add: "/playlist/:playlistId/add",
     userplaylists: "/playlist/user/:id",
-    userplaylist: "/playlist/:id",
+    detail: "/playlist/:id",
   },
   user: {
     details: "/user/:username",

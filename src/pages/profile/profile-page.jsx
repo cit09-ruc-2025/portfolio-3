@@ -1,15 +1,15 @@
+import { Clock, Search, Star } from "lucide-react";
+import { Container, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import PageSection from "../../components/layout/page-section";
 import CardGrid from "../../components/layout/card-grid";
+import Spinner from "../../components/layout/spinner";
+import { useGetUserDetails } from "../../hooks/queries/user";
+import { routeUrls } from "../../libs/route";
+import CreatePlaylist from "./components/create-playlist";
+import PlaylistList from "./components/playlist-list";
 import ProfileActionButton from "./components/profile-action-button";
 import ProfileCard from "./components/profile-card";
-import { Container, Row } from "react-bootstrap";
-import { Clock, Search, Star } from "lucide-react";
-import PlaylistList from "./components/playlist-list";
-import { useGetUserDetails } from "../../hooks/queries/user";
-import Spinner from "../../components/layout/spinner";
 import ReviewList from "./components/review-list";
-import { routeUrls } from "../../libs/route";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -57,8 +57,11 @@ const ProfilePage = () => {
       </Row>
 
       <Row>
-        <h4>Playlists</h4>
-        <PlaylistList id={data.id} username={username} />
+        <div className="d-flex justify-content-between align-items-center">
+          <h4>Playlists</h4>
+          <CreatePlaylist id={data.id} />
+        </div>
+        <PlaylistList id={data.id} />
       </Row>
 
       <Row>

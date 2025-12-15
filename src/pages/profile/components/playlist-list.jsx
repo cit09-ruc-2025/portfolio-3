@@ -1,10 +1,10 @@
 import { Spinner } from "react-bootstrap";
-import { useGetPlaylists } from "../../../hooks/queries/playlist";
+import { useGetPlaylistsByUser } from "../../../hooks/queries/playlist";
 import CardGrid from "../../../components/layout/card-grid";
 import PlaylistButton from "./playlist-button";
 
 const PlaylistList = ({ id, username }) => {
-  const { isLoading, data } = useGetPlaylists(id);
+  const { isLoading, data } = useGetPlaylistsByUser(id);
 
   if (isLoading) {
     return <Spinner />;

@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { fetchHttp } from "../../libs/utils/fetch";
 import { urls } from "../../libs/url";
 import { HTTP_METHODS } from "../../libs/constants";
 
-export const useGetPlaylists = (id) => {
+export const useGetPlaylistsByUser = (id) => {
   return useQuery({
     queryKey: ["playlists", id],
     queryFn: () =>
@@ -21,10 +21,38 @@ export const useGetPlaylist = (id) => {
     queryKey: ["playlist", id],
     queryFn: () =>
       fetchHttp({
-        url: urls.playlist.userplaylist.replace(":id", id),
+        url: urls.playlist.detail.replace(":id", id),
         options: {
           method: HTTP_METHODS.GET,
+        }
+      })
+  })
+}
+
+export const useCreatePlaylist = () => {
+  return useMutation({
+    mutationFn: (payload) =>
+      fetchHttp({
+        url: urls.playlist.base,
+        options: {
+          method: HTTP_METHODS.POST,
+          body: payload,
         },
       }),
+  });
+};
+
+export const useAddToPlaylist = () => {
+  return useMutation({
+    mutationFn: (payload) => {
+      const { playlistId, ...rest } = payload;
+      return fetchHttp({
+        url: urls.playlist.add.replace(":playlistId", playlistId),
+        options: {
+          method: HTTP_METHODS.POST,
+          body: rest,
+        },
+      });
+    },
   });
 };
