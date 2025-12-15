@@ -14,6 +14,15 @@
   height: 100vh;
 }
 
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  border: 0;
+  background-color: transparent;
+}
+
 .spinner {
   border-color: var(--primary);
   border-right-color: transparent;
@@ -30,7 +39,8 @@
 }
 
 .primary-button,
-.primary-button:first-child:active {
+.primary-button:first-child:active,
+:not(.primary-button) + .primary-button:active {
   background: var(--primary);
   border: 1px solid var(--primary);
 }

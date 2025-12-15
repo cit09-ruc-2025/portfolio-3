@@ -24,8 +24,8 @@ const MediaCrewList = ({ id }) => {
 
   return (
     <Row className="gy-3">
-      {peopleList?.map((people, i) => (
-        <Col key={i} xs={5} md={3}>
+      {peopleList?.map((people) => (
+        <Col key={`${people.peopleId}-${people.roleId}`} xs={5} md={3}>
           <PeopleCard people={people} />
         </Col>
       ))}

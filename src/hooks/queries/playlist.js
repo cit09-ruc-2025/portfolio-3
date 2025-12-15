@@ -56,3 +56,16 @@ export const useAddToPlaylist = () => {
     },
   });
 };
+
+export const useRemoveFromPlaylist = (playlistId, isMedia) => {
+  return useMutation({
+    mutationFn: (itemId) => {
+      return fetchHttp({
+        url: `${urls.playlist.remove.replace(":playlistId", playlistId).replace(":itemId", itemId)}?isMedia=${!!isMedia}`,
+        options: {
+          method: HTTP_METHODS.DELETE,
+        },
+      });
+    },
+  });
+};

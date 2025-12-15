@@ -20,6 +20,7 @@ const MediaHeader = ({
   isEpisode,
   isWatched,
   isFavorite,
+  playLists,
 }) => {
   const [imgError, setImgError] = useState(false);
 
@@ -113,7 +114,11 @@ const MediaHeader = ({
               >
                 {isWatched ? "Watched" : "Mark as Watched"}
               </Button>
-              <AddToPlaylist userId={userId} mediaId={id} />
+              <AddToPlaylist
+                userId={userId}
+                mediaId={id}
+                playLists={playLists}
+              />
             </>
           )}
         </div>
