@@ -41,3 +41,15 @@ export const useAddSearchHistory = () => {
     })
   });
 };
+
+export const useClearSearchHistory = () => {
+  return useMutation({
+    mutationFn: () => fetchHttp({
+      url: urls.searchHistory.base,
+      options: {
+        method: HTTP_METHODS.DELETE,
+
+      }
+    })
+  });
+};
