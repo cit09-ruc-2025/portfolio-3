@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageSection from "../../components/layout/page-section";
 import CardGrid from "./components/card-grid";
 import ProfileActionButton from "./components/profile-action-button";
@@ -9,10 +9,14 @@ import PlaylistList from "./components/playlist-list";
 import { useGetUserDetails } from "../../hooks/queries/user";
 import Spinner from "../../components/layout/spinner";
 import ReviewList from "./components/review-list";
+import { routeUrls } from "../../libs/route";
 
 const ProfilePage = () => {
   const { username } = useParams();
+
   const { isLoading, data } = useGetUserDetails(username);
+
+  const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
   if (!data) return <p>An error occurred.</p>;
@@ -26,14 +30,22 @@ const ProfilePage = () => {
       </Row>
       <Row>
         <CardGrid columns={3}>
-          <ProfileActionButton onClick={() => {}}>
+          <ProfileActionButton
+            onClick={() => {
+              navigate(routeUrls.watchHistory);
+            }}
+          >
             <Container className="d-flex flex-column gap-1">
               <Clock className="action-button-icon mb-1" />
               <h5 className="mb-0">Watch History</h5>
               <p>View your watch history</p>
             </Container>
           </ProfileActionButton>
-          <ProfileActionButton onClick={() => {}}>
+          <ProfileActionButton
+            onClick={() => {
+              navigate(routeUrls.searchHistory);
+            }}
+          >
             <Container className="d-flex flex-column gap-1">
               <Search className="action-button-icon mb-1" />
               <h5 className="mb-0">Search History</h5>

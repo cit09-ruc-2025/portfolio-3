@@ -12,6 +12,7 @@ export const urls = {
     signup: "/user",
   },
   search: {
+    base: "/search",
     media: "/search/media",
     people: "/search/people",
   },
@@ -24,5 +25,8 @@ export const urls = {
   },
   review: {
     base: "/review/:mediaId"
+  },
+  searchHistory: {
+    base: "/search-history"
   }
 };

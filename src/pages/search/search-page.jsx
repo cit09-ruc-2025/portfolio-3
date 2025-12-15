@@ -21,6 +21,7 @@ const SearchPage = () => {
     hasNextPage: hasNextMediaPage,
     fetchNextPage: fetchNextMediaPage,
   } = useSearchMedia(keyword);
+
   const {
     data: peopleData,
     isLoading: isPeopleLoading,
@@ -49,7 +50,7 @@ const SearchPage = () => {
         <NoSearchData />
       ) : (
         <>
-          {mediaItems?.length && (
+          {!!mediaItems?.length && (
             <div className="d-flex flex-column gap-3 mt-5">
               <h4>Media</h4>
               <div className="search-result">
@@ -73,7 +74,7 @@ const SearchPage = () => {
               )}
             </div>
           )}
-          {peopleItems.length && (
+          {!!peopleItems?.length && (
             <div className="d-flex flex-column gap-3 mt-5">
               <h4>People</h4>
               <div className="search-result-people">
