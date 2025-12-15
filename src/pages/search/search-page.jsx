@@ -6,7 +6,8 @@ import PeopleCard from "../../components/common/people-card";
 import Spinner from "../../components/layout/spinner";
 import { useSearchMedia, useSearchPeople } from "../../hooks/queries/search";
 import { routeUrls } from "../../libs/route";
-import NoSearchData from "./components/no-search-data";
+import NoData from "../../components/common/no-data";
+import { Search } from "lucide-react";
 
 const SearchPage = () => {
   const location = useLocation();
@@ -47,7 +48,11 @@ const SearchPage = () => {
       <h3>Search results for: "{keyword}"</h3>
 
       {!mediaItems?.length && !peopleItems?.length ? (
-        <NoSearchData />
+        <NoData>
+          <Search size="30" opacity="0.5" />
+          <p className="m-0 fw-semibold">No results found</p>
+          <p className="m-0">Try searching for something else</p>
+        </NoData>
       ) : (
         <>
           {!!mediaItems?.length && (

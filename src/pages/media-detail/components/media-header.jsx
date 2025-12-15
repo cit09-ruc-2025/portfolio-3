@@ -1,13 +1,33 @@
-import { Star } from "lucide-react";
+import { Clock, ClockCheck, Star } from "lucide-react";
 import { useState } from "react";
-import { Badge, Col, Container } from "react-bootstrap";
+import { Badge, Button, Col, Container } from "react-bootstrap";
 import Spinner from "../../../components/layout/spinner";
 import { useGetImage } from "../../../hooks/queries/images";
+import { getCookie } from "../../../libs/utils/cookie";
+import {
+  useAddToWatched,
+  useRemoveFromWatched,
+} from "../../../hooks/queries/watchedList";
+import { queryClient } from "../../../context/query-client-provider";
 
-const MediaHeader = ({ title, averageRating, id, hasEpisodes, isEpisode }) => {
+const MediaHeader = ({
+  title,
+  averageRating,
+  id,
+  hasEpisodes,
+  isEpisode,
+  isWatched,
+}) => {
   const [imgError, setImgError] = useState(false);
 
   const { data, isLoading } = useGetImage(id);
+
+  const token = getCookie("token");
+  const userId = getCookie("userId");
+
+  const { mutate: addToWatched, isPending } = useAddToWatched(userId);
+  const { mutate: removeFromWatched, isPending: isRemovePending } =
+    useRemoveFromWatched(userId);
 
   if (isLoading) {
     return <Spinner />;
@@ -28,6 +48,25 @@ const MediaHeader = ({ title, averageRating, id, hasEpisodes, isEpisode }) => {
   } else {
     poster = movie_results?.[0]?.poster_path;
   }
+
+  const handleWatched = () => {
+    if (isWatched) {
+      removeFromWatched(id, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["media-user-status"]);
+        },
+      });
+    } else {
+      addToWatched(
+        { mediaId: id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries(["media-user-status"]);
+          },
+        }
+      );
+    }
+  };
 
   return (
     <Col
@@ -57,7 +96,22 @@ const MediaHeader = ({ title, averageRating, id, hasEpisodes, isEpisode }) => {
           marginBottom: "20px",
         }}
       >
-        <h1>{title}</h1>
+        <div className="d-flex align-items-center gap-2">
+          <h1>{title}</h1>
+          {!!token && !isEpisode && (
+            <>
+              <Button
+                className={`${
+                  isWatched ? "primary-button" : "secondary-button"
+                } media-action-button`}
+                onClick={handleWatched}
+                disabled={isPending || isRemovePending}
+              >
+                {isWatched ? "Watched" : "Mark as Watched"}
+              </Button>
+            </>
+          )}
+        </div>
         <div className="d-flex gap-2 align-items-start">
           <Badge
             bg="dark"

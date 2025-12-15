@@ -13,6 +13,7 @@ import Layout from "./components/layout/layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProfilePage from "./pages/profile/profile-page";
 import SearchHistoryPage from "./pages/search-history/search-history-page";
+import WatchedListPage from "./pages/watched-list/watched-list-page";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: routeUrls.searchHistory,
         element: <SearchHistoryPage />,
+      },
+      {
+        path: routeUrls.watchedList,
+        element: <WatchedListPage />,
       },
     ],
   },

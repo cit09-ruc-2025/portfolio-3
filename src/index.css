@@ -222,3 +222,22 @@ input {
 .secondary-button:hover {
   background: #a5a3a3;
 }
+
+.media-action-button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.watched-list-people {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 12px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
