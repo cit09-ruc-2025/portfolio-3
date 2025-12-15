@@ -222,3 +222,11 @@ input {
 .secondary-button:hover {
   background: #a5a3a3;
 }
+
+.media-action {
+  color: var(--accent);
+}
+
+.media-action:hover {
+  color: var(--secondary);
+}

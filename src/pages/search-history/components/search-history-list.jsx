@@ -17,7 +17,8 @@ import { Link } from "react-router-dom";
 import { routeUrls } from "../../../libs/route";
 import { useState } from "react";
 import ClearHistory from "./clear-history";
-import NoSearchHistory from "./no-search-history";
+import NoData from "../../../components/common/no-data";
+import { Search } from "lucide-react";
 
 const SearchHistoryList = ({ userId }) => {
   const [show, setShow] = useState(false);
@@ -32,7 +33,12 @@ const SearchHistoryList = ({ userId }) => {
   const searchItems = data?.pages?.flatMap((page) => page.items);
 
   if (!searchItems?.length) {
-    return <NoSearchHistory />;
+    return (
+      <NoData>
+        <Search size="30" opacity="0.5" />
+        <p className="m-0 fw-semibold">No Search History found</p>
+      </NoData>
+    );
   }
 
   const groupedItems = groupByDate(searchItems, "createdAt");

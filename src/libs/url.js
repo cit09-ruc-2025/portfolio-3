@@ -28,5 +28,9 @@ export const urls = {
   },
   searchHistory: {
     base: "/search-history"
+  },
+  watchedList: {
+    base: "/user/:id/watch-history",
+    delete: "/user/:id/watch-history/:mediaId",
   }
 };
