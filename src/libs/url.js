@@ -32,5 +32,10 @@ export const urls = {
   watchedList: {
     base: "/user/:id/watch-history",
     delete: "/user/:id/watch-history/:mediaId",
-  }
+  },
+  people: {
+    base: "/people",
+    detail: "/people/:id",
+    media: "/people/:id/media"
+  },
 };
