@@ -2,6 +2,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetchHttp } from "../../libs/utils/fetch";
 import { urls } from "../../libs/url";
 import { HTTP_METHODS } from "../../libs/constants";
+import { getCookie } from "../../libs/utils/cookie";
 
 export const useGetPeopleDetail = (id) => {
   return useQuery({
@@ -39,5 +40,21 @@ export const useGetPeopleMedia = (id) => {
       return nextPage;
     },
     initialPageParam: 1,
+  });
+};
+
+export const useGetPeopleUserStatus = (id) => {
+  const token = getCookie("token");
+
+  return useQuery({
+    queryKey: ["people-user-status", id],
+    enabled: !!token,
+    queryFn: () =>
+      fetchHttp({
+        url: urls.people.userStatus.replace(":id", id),
+        options: {
+          method: HTTP_METHODS.GET,
+        },
+      }),
   });
 };

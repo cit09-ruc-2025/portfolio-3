@@ -37,11 +37,17 @@ export const urls = {
     media: {
       base: "/user/:id/favorite-media",
       delete: "/user/:id/favorite-media/:itemId",
+    },
+    people: {
+      base: "/user/:id/favorite-people",
+      delete: "/user/:id/favorite-people/:itemId",
     }
   },
   people: {
     base: "/people",
     detail: "/people/:id",
-    media: "/people/:id/media"
+    media: "/people/:id/media",
+    userStatus: "/people/:id/user-status",
+
   },
 };

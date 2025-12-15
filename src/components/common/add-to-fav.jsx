@@ -16,18 +16,23 @@ const AddToFav = ({ isFavorite, isMedia, id }) => {
 
   const handleFavorite = () => {
     if (!isFavorite) {
-      addToFav(
-        { mediaId: id },
-        {
-          onSuccess: () => {
+      addToFav(isMedia ? { mediaId: id } : { peopleId: id }, {
+        onSuccess: () => {
+          if (isMedia) {
             queryClient.invalidateQueries(["media-user-status"]);
-          },
-        }
-      );
+          } else {
+            queryClient.invalidateQueries(["people-user-status"]);
+          }
+        },
+      });
     } else {
       removeFromFav(id, {
         onSuccess: () => {
-          queryClient.invalidateQueries(["media-user-status"]);
+          if (isMedia) {
+            queryClient.invalidateQueries(["media-user-status"]);
+          } else {
+            queryClient.invalidateQueries(["people-user-status"]);
+          }
         },
       });
     }
@@ -39,7 +44,10 @@ const AddToFav = ({ isFavorite, isMedia, id }) => {
       onClick={handleFavorite}
       disabled={isPending || isRemovePending}
     >
-      <Heart fill={isFavorite ? "red" : "transparent"} />
+      <Heart
+        fill={isFavorite ? "red" : "transparent"}
+        stroke={isFavorite ? "red" : "black"}
+      />
     </Button>
   );
 };
