@@ -1,4 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { urls } from "../../libs/url";
+import { HTTP_METHODS } from "../../libs/constants";
+import { fetchHttp } from "../../libs/utils/fetch";
 
 export function useGetMediaImage(id, mediaType) {
   let url = `${import.meta.env.VITE_TMDB_BASE_URL}/:mediaType/${id}/images?api_key=${import.meta.env.VITE_TMDB_API_KEY}`
@@ -29,3 +32,57 @@ export function useGetImage(id) {
     },
   });
 }
+
+export const useGetFavoriteMediaList = (userId) => {
+  return useInfiniteQuery({
+    queryKey: ["favorite-media", userId],
+    queryFn: ({ pageParam = 1 }) => fetchHttp({
+      url: urls.favorite.media.base.replace(":id", userId), options: {
+        method: HTTP_METHODS.GET,
+        params: {
+          page: pageParam,
+
+        }
+      }
+    }),
+    getNextPageParam: (res) => {
+      if (
+        res.numberOfPages === 0 ||
+        !res.next
+      ) {
+        return undefined;
+      }
+      const url = new URL(res.next);
+      const nextPage = Number(url.searchParams.get("page"));
+      return nextPage;
+    },
+    initialPageParam: 1,
+  });
+};
+
+export const useGetFavoritePeopleList = (userId) => {
+  return useInfiniteQuery({
+    queryKey: ["favorite-people", userId],
+    queryFn: ({ pageParam = 1 }) => fetchHttp({
+      url: urls.favorite.people.base.replace(":id", userId), options: {
+        method: HTTP_METHODS.GET,
+        params: {
+          page: pageParam,
+
+        }
+      }
+    }),
+    getNextPageParam: (res) => {
+      if (
+        res.numberOfPages === 0 ||
+        !res.next
+      ) {
+        return undefined;
+      }
+      const url = new URL(res.next);
+      const nextPage = Number(url.searchParams.get("page"));
+      return nextPage;
+    },
+    initialPageParam: 1,
+  });
+};
