@@ -6,7 +6,7 @@ import { getCookie } from "../../libs/utils/cookie";
 
 export const useGetMediaList = ({ page, perPage, orderBy }) => {
   return useQuery({
-    queryKey: ["media-list", page, perPage],
+    queryKey: ["media-list" + orderBy ? "-" + orderBy : "", page, perPage],
     queryFn: () =>
       fetchHttp({
         url: urls.media.list,
