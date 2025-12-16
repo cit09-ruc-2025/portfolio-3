@@ -25,10 +25,10 @@ export const urls = {
     reviews: "/user/:id/reviews",
   },
   review: {
-    base: "/review/:mediaId"
+    base: "/review/:mediaId",
   },
   searchHistory: {
-    base: "/search-history"
+    base: "/search-history",
   },
   watchedList: {
     base: "/user/:id/watch-history",
@@ -42,13 +42,16 @@ export const urls = {
     people: {
       base: "/user/:id/favorite-people",
       delete: "/user/:id/favorite-people/:itemId",
-    }
+    },
   },
   people: {
     base: "/people",
     detail: "/people/:id",
     media: "/people/:id/media",
     userStatus: "/people/:id/user-status",
-
+  },
+  genre: {
+    base: "/genre",
+    genreMedia: "/genre/:id",
   },
 };
