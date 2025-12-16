@@ -1,10 +1,10 @@
 import { Tags } from "lucide-react";
 import NoData from "../../../components/common/no-data";
 import Spinner from "../../../components/layout/spinner";
-import { useGenres } from "../../../hooks/queries/genres";
+import { useGetGenres } from "../../../hooks/queries/genres.js";
 
 const GenreList = () => {
-  const { data, isLoading } = useGenres();
+  const { data, isLoading } = useGetGenres();
 
   if (isLoading) return <Spinner />;
 
