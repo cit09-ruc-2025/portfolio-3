@@ -8,10 +8,13 @@ import { Link } from "react-router-dom";
 import { routeUrls } from "../../libs/route";
 import { getCookie } from "../../libs/utils/cookie";
 import SearchBar from "../common/search-bar";
+import { useLogout } from "../../hooks/queries/auth";
 
 const Navbar = () => {
   const token = getCookie("token");
   const user = getCookie("username");
+  const logout = useLogout();
+
   return (
     <BootstrapNavbar
       expand="lg"
@@ -65,7 +68,9 @@ const Navbar = () => {
                     Profile
                   </Dropdown.Item>
                   <Dropdown.Divider />
-                  <Dropdown.Item className="text-danger">Logout</Dropdown.Item>
+                  <Dropdown.Item onClick={logout} className="text-danger">
+                    Logout
+                  </Dropdown.Item>
                 </>
               ) : (
                 <Dropdown.Item as={Link} to={routeUrls.auth}>
