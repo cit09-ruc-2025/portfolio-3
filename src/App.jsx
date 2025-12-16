@@ -16,6 +16,7 @@ import SearchHistoryPage from "./pages/search-history/search-history-page";
 import WatchedListPage from "./pages/watched-list/watched-list-page";
 import PeopleDetailPage from "./pages/people-detail/people-detail-page";
 import FavoritePage from "./pages/favorite/favorite-page";
+import PlaylistPage from "./pages/playlist/playlist-page";
 
 const router = createBrowserRouter([
   {
