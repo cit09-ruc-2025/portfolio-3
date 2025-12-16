@@ -4,6 +4,7 @@ import { urls } from "../../libs/url";
 import { HTTP_METHODS } from "../../libs/constants";
 import { deleteCookie } from "../../libs/utils/cookie";
 import { useNavigate } from "react-router-dom";
+import { routeUrls } from "../../libs/route";
 
 export const useLogin = () => {
   return useMutation({
@@ -39,6 +40,6 @@ export function useLogout() {
     deleteCookie("username");
     deleteCookie("userId");
 
-    navigate("/", { replace: true });
+    navigate(routeUrls.homepage, { replace: true });
   };
 }
