@@ -18,7 +18,7 @@ export const urls = {
   },
   playlist: {
     base: "/playlist",
-    delete: "/playlist/:playlistId",
+    detail: "/playlist/:playlistId",
     add: "/playlist/:playlistId/add",
     remove: "/playlist/:playlistId/remove/:itemId",
     userplaylists: "/playlist/user/:id",

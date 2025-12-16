@@ -73,10 +73,23 @@ export const useRemoveFromPlaylist = (playlistId, isMedia) => {
 export const useDeletePlaylist = (id) => {
   return useMutation({
     mutationFn: () => fetchHttp({
-      url: urls.playlist.delete.replace(":playlistId", id),
+      url: urls.playlist.detail.replace(":playlistId", id),
       options: {
         method: HTTP_METHODS.DELETE,
       }
     })
+  });
+};
+
+export const useEditPlaylist = (playlistId) => {
+  return useMutation({
+    mutationFn: (payload) =>
+      fetchHttp({
+        url: urls.playlist.detail.replace(":playlistId", playlistId),
+        options: {
+          method: HTTP_METHODS.PUT,
+          body: payload,
+        },
+      }),
   });
 };

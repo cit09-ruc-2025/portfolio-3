@@ -1,16 +1,11 @@
-import { List, MoreVertical } from "lucide-react";
+import { List, Lock, MoreVertical, Unlock } from "lucide-react";
 import { Container, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { routeUrls } from "../../../libs/route";
 import ProfileActionButton from "./profile-action-button";
 
-const PlaylistButton = ({
-  playlist,
-  setIsEdit,
-  setIsDelete,
-  setPlaylistId,
-}) => {
-  const { title, description, mediaIds, id } = playlist;
+const PlaylistButton = ({ playlist, setIsEdit, setIsDelete, setPlaylist }) => {
+  const { title, description, mediaIds, id, isPublic } = playlist;
   const navigate = useNavigate();
 
   return (
@@ -22,7 +17,11 @@ const PlaylistButton = ({
       <Container className="d-flex flex-column gap-1 p-0">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
-            <List className="action-button-icon" />
+            {isPublic ? (
+              <Unlock className="action-button-icon" />
+            ) : (
+              <Lock className="action-button-icon" />
+            )}
             <h5 className="mb-0">{title}</h5>
           </div>
           <div className="d-flex gap-1 align-items-center">
@@ -40,7 +39,12 @@ const PlaylistButton = ({
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setIsEdit((prev) => !prev)}>
+                <Dropdown.Item
+                  onClick={() => {
+                    setIsEdit(true);
+                    setPlaylist(playlist);
+                  }}
+                >
                   Edit
                 </Dropdown.Item>
                 <Dropdown.Divider />
@@ -48,7 +52,7 @@ const PlaylistButton = ({
                   className="text-danger"
                   onClick={() => {
                     setIsDelete(true);
-                    setPlaylistId(id);
+                    setPlaylist(playlist);
                   }}
                 >
                   Delete

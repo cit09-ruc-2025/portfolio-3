@@ -1,16 +1,33 @@
 import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import { useCreatePlaylist } from "../../../hooks/queries/playlist";
+import {
+  useCreatePlaylist,
+  useEditPlaylist,
+} from "../../../hooks/queries/playlist";
 import { queryClient } from "../../../context/query-client-provider";
+import { getCookie } from "../../../libs/utils/cookie";
 
-function CreatePlaylist({ id }) {
-  const [showModal, setShowModal] = useState(false);
+function CreatePlaylist({
+  playlistId,
+  title,
+  description,
+  isPublic,
+  showModal,
+  setShowModal,
+}) {
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    isPublic: false,
+    title: title || "",
+    description: description || "",
+    isPublic: isPublic || false,
   });
   const [errors, setErrors] = useState({});
+
+  const { mutate: addPlaylist, isPending: isCreatePending } =
+    useCreatePlaylist();
+  const { mutate: editPlaylist, isPending: isEditPending } =
+    useEditPlaylist(playlistId);
+
+  const userId = getCookie("userId");
 
   const handleClose = () => {
     setShowModal(false);
@@ -21,10 +38,6 @@ function CreatePlaylist({ id }) {
     });
     setErrors({});
   };
-
-  const handleShow = () => setShowModal(true);
-
-  const { mutate: addPlaylist } = useCreatePlaylist();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -43,6 +56,8 @@ function CreatePlaylist({ id }) {
 
     if (!formData.title?.trim()) {
       newErrors.title = "Title is required";
+    } else if (formData.title.length < 3) {
+      newErrors.title = "Title must have minimum 3 characters";
     } else if (formData.title.length > 100) {
       newErrors.title = "Title cannot exceed 100 characters";
     }
@@ -64,27 +79,36 @@ function CreatePlaylist({ id }) {
       return;
     }
 
-    addPlaylist(formData, {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["playlists", id]);
-        handleClose();
-      },
-    });
+    if (playlistId) {
+      editPlaylist(formData, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["playlists", userId]);
+          handleClose();
+        },
+        onError: (error) => {
+          setErrors(error?.errors);
+        },
+      });
+    } else {
+      addPlaylist(formData, {
+        onSuccess: () => {
+          queryClient.invalidateQueries(["playlists", userId]);
+          handleClose();
+        },
+        onError: (error) => {
+          setErrors(error?.errors);
+        },
+      });
+    }
   };
 
   return (
     <>
-      <Button
-        type="button"
-        className="mt-2 primary-button"
-        onClick={handleShow}
-      >
-        Create New Playlist
-      </Button>
-
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Create New Playlist</Modal.Title>
+          <Modal.Title>
+            {playlistId ? "Edit Playlist" : "Create New Playlist"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -136,8 +160,12 @@ function CreatePlaylist({ id }) {
                 <Button variant="secondary" onClick={handleClose}>
                   Cancel
                 </Button>
-                <Button type="submit" className="primary-button">
-                  Create Playlist
+                <Button
+                  type="submit"
+                  className="primary-button"
+                  disabled={isEditPending || isCreatePending}
+                >
+                  {playlistId ? "Edit Playlist" : "Create Playlist"}
                 </Button>
               </div>
             </div>
