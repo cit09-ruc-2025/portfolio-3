@@ -3,14 +3,16 @@ import ProfileActionButton from "./profile-action-button";
 import { List } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const PlaylistButton = ({ playlist }) => {
+const PlaylistButton = ({ playlist, username }) => {
   const { title, description, mediaIds, id } = playlist;
   const navigate = useNavigate();
+
+  const playlistLink = `/${username}/playlist/${id}`;
 
   return (
     <ProfileActionButton
       onClick={() => {
-        navigate("/playlists/" + id);
+        navigate(playlistLink);
       }}
     >
       <Container className="d-flex flex-column gap-1">

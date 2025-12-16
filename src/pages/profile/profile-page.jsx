@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import PageSection from "../../components/layout/page-section";
-import CardGrid from "./components/card-grid";
+import CardGrid from "../../components/layout/card-grid";
 import ProfileActionButton from "./components/profile-action-button";
 import ProfileCard from "./components/profile-card";
 import { Container, Row } from "react-bootstrap";
@@ -58,7 +58,7 @@ const ProfilePage = () => {
 
       <Row>
         <h4>Playlists</h4>
-        <PlaylistList id={data.id} />
+        <PlaylistList id={data.id} username={username} />
       </Row>
 
       <Row>

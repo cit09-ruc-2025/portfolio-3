@@ -18,6 +18,7 @@ export const urls = {
   },
   playlist: {
     userplaylists: "/playlist/user/:id",
+    userplaylist: "/playlist/:id",
   },
   user: {
     details: "/user/:username",

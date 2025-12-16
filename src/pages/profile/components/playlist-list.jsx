@@ -1,9 +1,9 @@
 import { Spinner } from "react-bootstrap";
 import { useGetPlaylists } from "../../../hooks/queries/playlist";
-import CardGrid from "./card-grid";
+import CardGrid from "../../../components/layout/card-grid";
 import PlaylistButton from "./playlist-button";
 
-const PlaylistList = ({ id }) => {
+const PlaylistList = ({ id, username }) => {
   const { isLoading, data } = useGetPlaylists(id);
 
   if (isLoading) {
@@ -17,7 +17,7 @@ const PlaylistList = ({ id }) => {
   return (
     <CardGrid columns={3}>
       {data.map((playlist) => {
-        return <PlaylistButton playlist={playlist} />;
+        return <PlaylistButton playlist={playlist} username={username} />;
       })}
     </CardGrid>
   );
