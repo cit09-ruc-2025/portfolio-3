@@ -5,12 +5,11 @@ const Rating = ({ rating }) => {
   return (
     <div className="mb-1">
       {Array.from({ length: rating }, () => (
-        <Star fill={"var(--rating)"} strokeWidth={0} />
+        <Star fill={"var(--rating)"} stroke={"var(--rating)"} />
       ))}
       {Array.from({ length: 10 - rating }, () => (
-        <Star fill={"#111"} strokeWidth={0} />
-      ))}{" "}
-      {rating}/10
+        <Star fill="none" stroke="#ccc" />
+      ))}
     </div>
   );
 };

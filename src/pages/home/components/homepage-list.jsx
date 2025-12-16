@@ -14,18 +14,26 @@ const HomePageList = ({ moviesQuery, listTitel }) => {
 export default HomePageList;
 
 const MovieList = ({ data, isLoading }) => {
-  if (isLoading) return <Spinner />;
-
-  const { items: movieList } = data;
+  if (isLoading)
+    return (
+      <div
+        style={{ minHeight: "300px" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <Spinner />
+      </div>
+    );
 
   if (!data) {
     return <p>Error Occurred</p>;
   }
 
+  const { items: movieList } = data;
+
   return (
     <Row>
       <ReusableSlider slidesToShow={4} showDots={false}>
-        {movieList.map((movie) => (
+        {movieList?.map((movie) => (
           <MovieCard movieDetail={movie} key={movie.id} />
         ))}
       </ReusableSlider>

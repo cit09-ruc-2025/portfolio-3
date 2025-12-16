@@ -100,15 +100,15 @@ export const useGetMediaReviews = (id) => {
   });
 };
 
-export const useGetMediaUserStatus = (id) => {
+export const useGetMediaUserStatus = (mediaId) => {
   const token = getCookie("token");
 
   return useQuery({
-    queryKey: ["media-user-status", id],
+    queryKey: ["media-user-status", mediaId],
     enabled: !!token,
     queryFn: () =>
       fetchHttp({
-        url: urls.media.userStatus.replace(":id", id),
+        url: urls.media.userStatus.replace(":id", mediaId),
         options: {
           method: HTTP_METHODS.GET,
         },

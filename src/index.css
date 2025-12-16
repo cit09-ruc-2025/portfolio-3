@@ -14,6 +14,15 @@
   height: 100vh;
 }
 
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  border: 0;
+  background-color: transparent;
+}
+
 .spinner {
   border-color: var(--primary);
   border-right-color: transparent;
@@ -30,7 +39,8 @@
 }
 
 .primary-button,
-.primary-button:first-child:active {
+.primary-button:first-child:active,
+:not(.primary-button) + .primary-button:active {
   background: var(--primary);
   border: 1px solid var(--primary);
 }
@@ -162,13 +172,17 @@ input {
 
 .page-section {
   width: 60%;
-  min-width: 36rem;
   max-width: 600rem;
   margin: 2rem auto;
   padding: 1.5rem;
+  margin-top: 0;
 
   background-color: #f3f4f6;
   border-radius: 12px;
+
+  @media (max-width: 767px) {
+    min-width: 100%;
+  }
 }
 
 .profile-action-button {
@@ -196,11 +210,7 @@ input {
 }
 
 .profile-action-button-clickable:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   border-color: var(--primary);
-  border-width: 2px;
-  margin: 0px;
 }
 
 .action-button-icon {
@@ -240,4 +250,16 @@ input {
   @media (max-width: 575px) {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.dropdown-item:active,
+.dropdown-item:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.dropdown-item.text-danger:active,
+.dropdown-item.text-danger:hover {
+  background-color: red;
+  color: white !important;
 }

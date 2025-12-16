@@ -10,6 +10,7 @@ import {
 } from "../../../hooks/queries/watchedList";
 import { queryClient } from "../../../context/query-client-provider";
 import AddToFav from "../../../components/common/add-to-fav";
+import AddToPlaylist from "./add-to-playlist";
 
 const MediaHeader = ({
   title,
@@ -19,6 +20,7 @@ const MediaHeader = ({
   isEpisode,
   isWatched,
   isFavorite,
+  playLists,
 }) => {
   const [imgError, setImgError] = useState(false);
 
@@ -112,6 +114,11 @@ const MediaHeader = ({
               >
                 {isWatched ? "Watched" : "Mark as Watched"}
               </Button>
+              <AddToPlaylist
+                itemId={id}
+                playListIds={playLists}
+                isMedia={true}
+              />
             </>
           )}
         </div>

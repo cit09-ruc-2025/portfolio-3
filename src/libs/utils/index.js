@@ -27,3 +27,9 @@ export const getFormattedTime = (dateString, isHour12 = true) => {
     hour12: isHour12,
   });
 }
+
+export const getShortDate = (dateString) => {
+  return new Intl.DateTimeFormat("da-DK", {
+    timeZone: "UTC",
+  }).format(new Date(dateString))
+}
