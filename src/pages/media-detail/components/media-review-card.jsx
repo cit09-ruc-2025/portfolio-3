@@ -3,6 +3,8 @@ import { Star } from "lucide-react";
 import { getCookie } from "../../../libs/utils/cookie";
 import ReviewMenu from "./review-menu";
 import { getFormattedDate } from "../../../libs/utils";
+import { Link } from "react-router-dom";
+import { routeUrls } from "../../../libs/route";
 
 const MediaReviewCard = ({ userReview, setIsEdit }) => {
   const { review, username, rating, createdAt, userId, mediaId } = userReview;
@@ -14,7 +16,12 @@ const MediaReviewCard = ({ userReview, setIsEdit }) => {
       <div className="d-flex flex-column gap-1">
         <div className="w-100 d-flex flex-row justify-content-between">
           <div className="d-flex flex-column">
-            <p className="m-0 fw-semibold">{username}</p>
+            <Link
+              to={routeUrls.profile.replace(":username", username)}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <p className="m-0 fw-semibold">{username}</p>
+            </Link>
             <p className="m-0" style={{ fontSize: "14px", color: "grey" }}>
               {getFormattedDate(createdAt)}
             </p>

@@ -11,6 +11,7 @@ import ProfileActionButton from "./components/profile-action-button";
 import ProfileCard from "./components/profile-card";
 import ReviewList from "./components/review-list";
 import CardGrid from "../../components/layout/card-grid";
+import { getCookie } from "../../libs/utils/cookie";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -25,6 +26,8 @@ const ProfilePage = () => {
 
   if (!data) return <p>An error occurred.</p>;
 
+  const loggedUsername = getCookie("username");
+
   return (
     <Container className="d-flex flex-column gap-4">
       <Row>
@@ -32,51 +35,60 @@ const ProfilePage = () => {
           <ProfileCard user={data} />
         </CardGrid>
       </Row>
-      <Row>
-        <CardGrid columns={3}>
-          <ProfileActionButton onClick={() => navigate(routeUrls.watchedList)}>
-            <Container className="d-flex flex-column gap-1">
-              <Clock className="action-button-icon mb-1" />
-              <h5 className="mb-0">Watched List</h5>
-              <p>View your watch list</p>
-            </Container>
-          </ProfileActionButton>
-          <ProfileActionButton
-            onClick={() => navigate(routeUrls.searchHistory)}
-          >
-            <Container className="d-flex flex-column gap-1">
-              <Search className="action-button-icon mb-1" />
-              <h5 className="mb-0">Search History</h5>
-              <p>Recent search history</p>
-            </Container>
-          </ProfileActionButton>
-          <ProfileActionButton onClick={() => navigate(routeUrls.favorites)}>
-            <Container className="d-flex flex-column gap-1">
-              <Star className="action-button-icon mb-1" />
-              <h5 className="mb-0">Favorites</h5>
-              <p>Your favorite content</p>
-            </Container>
-          </ProfileActionButton>
-        </CardGrid>
-      </Row>
-
+      {loggedUsername === username && (
+        <Row>
+          <CardGrid columns={3}>
+            <ProfileActionButton
+              onClick={() => navigate(routeUrls.watchedList)}
+            >
+              <Container className="d-flex flex-column gap-1">
+                <Clock className="action-button-icon mb-1" />
+                <h5 className="mb-0">Watched List</h5>
+                <p>View your watch list</p>
+              </Container>
+            </ProfileActionButton>
+            <ProfileActionButton
+              onClick={() => navigate(routeUrls.searchHistory)}
+            >
+              <Container className="d-flex flex-column gap-1">
+                <Search className="action-button-icon mb-1" />
+                <h5 className="mb-0">Search History</h5>
+                <p>Recent search history</p>
+              </Container>
+            </ProfileActionButton>
+            <ProfileActionButton onClick={() => navigate(routeUrls.favorites)}>
+              <Container className="d-flex flex-column gap-1">
+                <Star className="action-button-icon mb-1" />
+                <h5 className="mb-0">Favorites</h5>
+                <p>Your favorite content</p>
+              </Container>
+            </ProfileActionButton>
+          </CardGrid>
+        </Row>
+      )}
       <Row>
         <div className="d-flex justify-content-between align-items-center">
           <h4>Playlists</h4>
-          <Button
-            type="button"
-            className="mt-2 primary-button"
-            onClick={() => setShowModal(true)}
-          >
-            Create New Playlist
-          </Button>
+          {loggedUsername === username && (
+            <Button
+              type="button"
+              className="mt-2 primary-button"
+              onClick={() => setShowModal(true)}
+            >
+              Create New Playlist
+            </Button>
+          )}
           <CreatePlaylist
             userId={data.id}
             showModal={showModal}
             setShowModal={setShowModal}
           />
         </div>
-        <PlaylistList userId={data.id} username={username} />
+        <PlaylistList
+          userId={data.id}
+          username={username}
+          loggedUsername={loggedUsername}
+        />
       </Row>
 
       <Row>

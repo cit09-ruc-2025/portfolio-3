@@ -6,7 +6,7 @@ import { useState } from "react";
 import DeletePlaylist from "./delete-playlist";
 import CreatePlaylist from "./create-playlist";
 
-const PlaylistList = ({ userId, username }) => {
+const PlaylistList = ({ userId, username, loggedUsername }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [playlist, setPlaylist] = useState();
@@ -33,6 +33,7 @@ const PlaylistList = ({ userId, username }) => {
               setIsDelete={setIsDelete}
               username={username}
               setPlaylist={setPlaylist}
+              loggedUsername={loggedUsername}
             />
           );
         })}

@@ -56,10 +56,6 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: routeUrls.profile,
-        element: <ProfilePage />,
-      },
-      {
         path: routeUrls.searchHistory,
         element: <SearchHistoryPage />,
       },
