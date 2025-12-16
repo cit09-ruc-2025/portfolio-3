@@ -115,9 +115,9 @@ const MediaHeader = ({
                 {isWatched ? "Watched" : "Mark as Watched"}
               </Button>
               <AddToPlaylist
-                userId={userId}
-                mediaId={id}
-                playLists={playLists}
+                itemId={id}
+                playListIds={playLists}
+                isMedia={true}
               />
             </>
           )}

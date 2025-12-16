@@ -6,12 +6,12 @@ import { useState } from "react";
 import DeletePlaylist from "./delete-playlist";
 import CreatePlaylist from "./create-playlist";
 
-const PlaylistList = ({ id, username }) => {
+const PlaylistList = ({ userId, username }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [isDelete, setIsDelete] = useState(false);
   const [playlist, setPlaylist] = useState();
 
-  const { isLoading, data } = useGetPlaylistsByUser(id);
+  const { isLoading, data } = useGetPlaylistsByUser(userId);
 
   if (isLoading) {
     return <Spinner />;

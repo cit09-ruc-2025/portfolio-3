@@ -18,11 +18,10 @@ export const urls = {
   },
   playlist: {
     base: "/playlist",
-    detail: "/playlist/:playlistId",
-    add: "/playlist/:playlistId/add",
-    remove: "/playlist/:playlistId/remove/:itemId",
-    userplaylists: "/playlist/user/:id",
     detail: "/playlist/:id",
+    add: "/playlist/:playlistId/add",
+    remove: "/playlist/:id/remove/:itemId",
+    userplaylists: "/playlist/user/:userId",
   },
   user: {
     details: "/user/:username",

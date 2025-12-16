@@ -3,14 +3,22 @@ import { Button, ListGroup, Modal } from "react-bootstrap";
 import { queryClient } from "../../../context/query-client-provider";
 import { useGetPlaylistsByUser } from "../../../hooks/queries/playlist";
 import PlaylistItem from "./playlist-item";
+import { getCookie } from "../../../libs/utils/cookie";
+import Spinner from "../../../components/layout/spinner";
 
-function AddToPlaylist({ userId, mediaId, playLists }) {
+function AddToPlaylist({ itemId, playListIds, isMedia }) {
   const [showModal, setShowModal] = useState(false);
-  const { data: playlists } = useGetPlaylistsByUser(userId);
+
+  const userId = getCookie("userId");
+  const { data: playlists, isLoading } = useGetPlaylistsByUser(userId);
 
   const handleClose = () => {
     setShowModal(false);
-    queryClient.invalidateQueries(["media", mediaId]);
+    if (isMedia) {
+      queryClient.invalidateQueries(["media-user-status", itemId]);
+    } else {
+      queryClient.invalidateQueries(["people-user-status", itemId]);
+    }
   };
 
   const handleShow = () => setShowModal(true);
@@ -29,13 +37,16 @@ function AddToPlaylist({ userId, mediaId, playLists }) {
           className="p-0 overflow-hidden"
           style={{ borderRadius: "inherit" }}
         >
+          {isLoading && <Spinner />}
+          {playlists?.length === 0 && <p className="p-2">No playlists yet!</p>}
           <ListGroup variant="flush">
             {playlists?.map((playlist) => (
               <PlaylistItem
                 key={playlist.id}
                 playlist={playlist}
-                mediaId={mediaId}
-                isInPlaylist={playLists?.includes(playlist.id)}
+                itemId={itemId}
+                isInPlaylist={playListIds?.includes(playlist.id)}
+                isMedia={isMedia}
               />
             ))}
           </ListGroup>

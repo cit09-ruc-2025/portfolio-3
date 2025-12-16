@@ -3,12 +3,12 @@ import { fetchHttp } from "../../libs/utils/fetch";
 import { urls } from "../../libs/url";
 import { HTTP_METHODS } from "../../libs/constants";
 
-export const useGetPlaylistsByUser = (id) => {
+export const useGetPlaylistsByUser = (userId) => {
   return useQuery({
-    queryKey: ["playlists", id],
+    queryKey: ["playlists", userId],
     queryFn: () =>
       fetchHttp({
-        url: urls.playlist.userplaylists.replace(":id", id),
+        url: urls.playlist.userplaylists.replace(":userId", userId),
         options: {
           method: HTTP_METHODS.GET,
         },
@@ -61,7 +61,7 @@ export const useRemoveFromPlaylist = (playlistId, isMedia) => {
   return useMutation({
     mutationFn: (itemId) => {
       return fetchHttp({
-        url: `${urls.playlist.remove.replace(":playlistId", playlistId).replace(":itemId", itemId)}?isMedia=${!!isMedia}`,
+        url: `${urls.playlist.remove.replace(":id", playlistId).replace(":itemId", itemId)}?isMedia=${!!isMedia}`,
         options: {
           method: HTTP_METHODS.DELETE,
         },
@@ -73,7 +73,7 @@ export const useRemoveFromPlaylist = (playlistId, isMedia) => {
 export const useDeletePlaylist = (id) => {
   return useMutation({
     mutationFn: () => fetchHttp({
-      url: urls.playlist.detail.replace(":playlistId", id),
+      url: urls.playlist.detail.replace(":id", id),
       options: {
         method: HTTP_METHODS.DELETE,
       }
@@ -85,7 +85,7 @@ export const useEditPlaylist = (playlistId) => {
   return useMutation({
     mutationFn: (payload) =>
       fetchHttp({
-        url: urls.playlist.detail.replace(":playlistId", playlistId),
+        url: urls.playlist.detail.replace(":id", playlistId),
         options: {
           method: HTTP_METHODS.PUT,
           body: payload,

@@ -9,6 +9,7 @@ import { Calendar } from "lucide-react";
 import PeopleMediaList from "./components/people-media-list";
 import { getCookie } from "../../libs/utils/cookie";
 import AddToFav from "../../components/common/add-to-fav";
+import AddToPlaylist from "../media-detail/components/add-to-playlist";
 
 const PeopleDetailPage = () => {
   const { id } = useParams();
@@ -36,9 +37,13 @@ const PeopleDetailPage = () => {
           <Col>
             <h2>{name}</h2>
             {!!token && (
-              <>
+              <div className="d-flex gap-2">
                 <AddToFav isFavorite={peopleUserStatus?.isFavorite} id={id} />
-              </>
+                <AddToPlaylist
+                  itemId={id}
+                  playListIds={peopleUserStatus?.playlists}
+                />
+              </div>
             )}
             {birthDate && (
               <div

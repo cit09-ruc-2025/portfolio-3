@@ -247,3 +247,15 @@ input {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.dropdown-item:active,
+.dropdown-item:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.dropdown-item.text-danger:active,
+.dropdown-item.text-danger:hover {
+  background-color: red;
+  color: white !important;
+}

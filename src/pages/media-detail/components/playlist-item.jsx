@@ -6,25 +6,25 @@ import {
 import { Button, ListGroup } from "react-bootstrap";
 import { Bookmark } from "lucide-react";
 
-const PlaylistItem = ({ playlist, mediaId, isInPlaylist }) => {
+const PlaylistItem = ({ playlist, itemId, isInPlaylist, isMedia }) => {
   const [isInPlaylistOptimistic, setIsInPlaylistOptimistic] =
     useState(isInPlaylist);
 
   const { mutate: addToPlaylist } = useAddToPlaylist();
   const { mutate: removeFromPlaylist } = useRemoveFromPlaylist(
     playlist.id,
-    true
+    isMedia
   );
 
-  const handleAddToPlaylist = (playlistId) => {
+  const handleAddToPlaylist = () => {
     if (!isInPlaylistOptimistic) {
       addToPlaylist({
-        playlistId,
-        itemId: mediaId,
-        isMedia: true,
+        playlistId: playlist.id,
+        itemId: itemId,
+        isMedia,
       });
     } else {
-      removeFromPlaylist(mediaId);
+      removeFromPlaylist(itemId);
     }
     setIsInPlaylistOptimistic((prev) => !prev);
   };
@@ -42,10 +42,7 @@ const PlaylistItem = ({ playlist, mediaId, isInPlaylist }) => {
           </small>
         </div>
       </div>
-      <Button
-        variant="outline"
-        onClick={() => handleAddToPlaylist(playlist.id)}
-      >
+      <Button variant="outline" onClick={() => handleAddToPlaylist()}>
         <Bookmark
           fill={isInPlaylistOptimistic ? "#f5c518" : "#fff"}
           stroke={isInPlaylistOptimistic ? "#f5c518" : "#000"}

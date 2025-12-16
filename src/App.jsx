@@ -34,8 +34,14 @@ const router = createBrowserRouter([
         path: routeUrls.search,
         element: <SearchPage />,
       },
-      { path: routeUrls.profile, element: <ProfilePage /> },
-      { path: routeUrls.playlist, element: <PlaylistPage /> },
+      {
+        path: routeUrls.profile,
+        element: <ProfilePage />,
+      },
+      {
+        path: routeUrls.playlist,
+        element: <PlaylistPage />,
+      },
       {
         path: routeUrls.person,
         element: <PeopleDetailPage />,

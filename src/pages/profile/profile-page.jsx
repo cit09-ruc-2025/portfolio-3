@@ -5,12 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../../components/layout/spinner";
 import { useGetUserDetails } from "../../hooks/queries/user";
 import { routeUrls } from "../../libs/route";
-import CardGrid from "./components/card-grid";
 import CreatePlaylist from "./components/create-playlist";
 import PlaylistList from "./components/playlist-list";
 import ProfileActionButton from "./components/profile-action-button";
 import ProfileCard from "./components/profile-card";
 import ReviewList from "./components/review-list";
+import CardGrid from "../../components/layout/card-grid";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -22,6 +22,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
+
   if (!data) return <p>An error occurred.</p>;
 
   return (
@@ -75,7 +76,7 @@ const ProfilePage = () => {
             setShowModal={setShowModal}
           />
         </div>
-        <PlaylistList userId={data.id} />
+        <PlaylistList userId={data.id} username={username} />
       </Row>
 
       <Row>
