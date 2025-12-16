@@ -15,10 +15,11 @@ const Navbar = () => {
   return (
     <BootstrapNavbar
       expand="lg"
-      className="border-bottom px-5"
+      sticky="top"
+      className="border-bottom"
       style={{ background: "var(--accent)" }}
     >
-      <Container fluid>
+      <Container>
         <BootstrapNavbar.Brand
           as={Link}
           to={routeUrls.homepage}

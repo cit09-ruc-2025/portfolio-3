@@ -12,19 +12,25 @@ const PlaylistButton = ({
   username,
   loggedUsername,
 }) => {
-  const { title, description, mediaIds, id, isPublic } = playlist;
+  const { title, description, mediaIds, peopleIds, id, isPublic } = playlist;
   const navigate = useNavigate();
+
+  const totalCount = mediaIds.length + peopleIds.length;
 
   return (
     <ProfileActionButton
       onClick={() => {
-        navigate(routeUrls.playlist.replace(":id", id));
+        navigate(
+          routeUrls.playlist.replace(":id", id).replace(":username", username)
+        );
       }}
     >
       <Container className="d-flex flex-column gap-1 p-0">
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex gap-1 align-items-center">
-            {isPublic ? (
+            {loggedUsername !== username ? (
+              <List className="action-button-icon" />
+            ) : isPublic ? (
               <Unlock className="action-button-icon" />
             ) : (
               <Lock className="action-button-icon" />
@@ -33,7 +39,7 @@ const PlaylistButton = ({
           </div>
           <div className="d-flex gap-1 align-items-center">
             <p className="m-0">
-              {mediaIds.length > 0 ? `${mediaIds.length} items` : "0 item"}
+              {`${totalCount} ${totalCount > 1 ? "items" : "item"}`}
             </p>
             {loggedUsername === username && (
               <Dropdown onClick={(e) => e.stopPropagation()}>

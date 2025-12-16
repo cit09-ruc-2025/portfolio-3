@@ -172,13 +172,17 @@ input {
 
 .page-section {
   width: 60%;
-  min-width: 36rem;
   max-width: 600rem;
   margin: 2rem auto;
   padding: 1.5rem;
+  margin-top: 0;
 
   background-color: #f3f4f6;
   border-radius: 12px;
+
+  @media (max-width: 767px) {
+    min-width: 100%;
+  }
 }
 
 .profile-action-button {

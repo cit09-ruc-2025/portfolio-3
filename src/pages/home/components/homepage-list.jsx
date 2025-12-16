@@ -14,7 +14,15 @@ const HomePageList = ({ moviesQuery, listTitel }) => {
 export default HomePageList;
 
 const MovieList = ({ data, isLoading }) => {
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div
+        style={{ minHeight: "300px" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <Spinner />
+      </div>
+    );
 
   if (!data) {
     return <p>Error Occurred</p>;
