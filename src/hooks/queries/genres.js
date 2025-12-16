@@ -20,12 +20,12 @@ export const useGetGenres = ({ page, perPage }) => {
   });
 };
 
-export const useGetGenreMedia = ({ id, page, perPage }) => {
+export const useGetGenreMedia = ({ genreName, page, perPage }) => {
   return useQuery({
-    queryKey: ["genreMedia", id, page, perPage],
+    queryKey: ["genreMedia", genreName, page, perPage],
     queryFn: () =>
       fetchHttp({
-        url: urls.genre.genreMedia.replace(":id", id),
+        url: urls.genre.genreMedia.replace(":genreName", genreName),
         options: {
           method: HTTP_METHODS.GET,
           params: {

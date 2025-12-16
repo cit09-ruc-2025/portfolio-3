@@ -52,6 +52,6 @@ export const urls = {
   },
   genre: {
     base: "/genre",
-    genreMedia: "/genre/:id",
+    genreMedia: "/genre/:genreName",
   },
 };
