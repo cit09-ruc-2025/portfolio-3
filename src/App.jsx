@@ -12,7 +12,10 @@ import SearchPage from "./pages/search/search-page";
 import Layout from "./components/layout/layout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import ProfilePage from "./pages/profile/profile-page";
-import PlaylistPage from "./pages/playlist/playlist-page";
+import SearchHistoryPage from "./pages/search-history/search-history-page";
+import WatchedListPage from "./pages/watched-list/watched-list-page";
+import PeopleDetailPage from "./pages/people-detail/people-detail-page";
+import FavoritePage from "./pages/favorite/favorite-page";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,35 @@ const router = createBrowserRouter([
       },
       { path: routeUrls.profile, element: <ProfilePage /> },
       { path: routeUrls.playlist, element: <PlaylistPage /> },
+      {
+        path: routeUrls.person,
+        element: <PeopleDetailPage />,
+      },
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoutes>
+        <Layout />
+      </ProtectedRoutes>
+    ),
+    children: [
+      {
+        path: routeUrls.profile,
+        element: <ProfilePage />,
+      },
+      {
+        path: routeUrls.searchHistory,
+        element: <SearchHistoryPage />,
+      },
+      {
+        path: routeUrls.watchedList,
+        element: <WatchedListPage />,
+      },
+      {
+        path: routeUrls.favorites,
+        element: <FavoritePage />,
+      },
     ],
   },
   {

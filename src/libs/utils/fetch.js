@@ -1,3 +1,5 @@
+import { getCookie } from "./cookie";
+
 export const fetchHttp = async ({ url, options = {} }) => {
   const baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -9,12 +11,15 @@ export const fetchHttp = async ({ url, options = {} }) => {
     finalUrl += `?${queryString}`;
   }
 
+  const token = getCookie("token");
+
   const response = await fetch(finalUrl, {
     ...options,
     ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
   });
 

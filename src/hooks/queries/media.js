@@ -2,6 +2,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { urls } from "../../libs/url";
 import { HTTP_METHODS } from "../../libs/constants";
 import { fetchHttp } from "../../libs/utils/fetch";
+import { getCookie } from "../../libs/utils/cookie";
 
 export const useGetMediaList = ({ page, perPage, orderBy }) => {
   return useQuery({
@@ -96,5 +97,21 @@ export const useGetMediaReviews = (id) => {
       return nextPage;
     },
     initialPageParam: 1,
+  });
+};
+
+export const useGetMediaUserStatus = (id) => {
+  const token = getCookie("token");
+
+  return useQuery({
+    queryKey: ["media-user-status", id],
+    enabled: !!token,
+    queryFn: () =>
+      fetchHttp({
+        url: urls.media.userStatus.replace(":id", id),
+        options: {
+          method: HTTP_METHODS.GET,
+        },
+      }),
   });
 };

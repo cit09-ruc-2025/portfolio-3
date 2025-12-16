@@ -1,5 +1,8 @@
 import { useParams } from "react-router-dom";
-import { useGetMediaDetail } from "../../hooks/queries/media";
+import {
+  useGetMediaDetail,
+  useGetMediaUserStatus,
+} from "../../hooks/queries/media";
 import Spinner from "../../components/layout/spinner";
 import { Badge, Card, CardBody, Col, Container, Row } from "react-bootstrap";
 import { Calendar, Clock, Star } from "lucide-react";
@@ -13,6 +16,7 @@ const MediaDetailPage = () => {
   const { id } = useParams();
 
   const { isLoading, data } = useGetMediaDetail(id);
+  const { data: mediaUserStatus } = useGetMediaUserStatus(id);
 
   if (isLoading) {
     return <Spinner />;
@@ -49,6 +53,8 @@ const MediaDetailPage = () => {
           id={id}
           hasEpisodes={hasEpisodes}
           isEpisode={isEpisode}
+          isWatched={mediaUserStatus?.isWatched}
+          isFavorite={mediaUserStatus?.isFavorite}
         />
       </Col>
       <Container className="mt-5 d-flex flex-column gap-5">
@@ -97,7 +103,7 @@ const MediaDetailPage = () => {
         </Row>
         <Row>
           <h5>Reviews</h5>
-          <MediaReviewList id={id} />
+          <MediaReviewList id={id} isReviewed={mediaUserStatus?.isReviewed} />
         </Row>
         <ExtraDetail
           languages={languages}

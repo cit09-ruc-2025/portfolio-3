@@ -84,9 +84,9 @@ const SignupForm = ({ setActiveKey }) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              isInvalid={!!errors.email}
+              isInvalid={!!errors?.email}
             />
-            {errors.email && (
+            {errors?.email && (
               <Form.Text className="text-danger">{errors.email}</Form.Text>
             )}
           </Form.Group>
@@ -99,9 +99,9 @@ const SignupForm = ({ setActiveKey }) => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              isInvalid={!!errors.username}
+              isInvalid={!!errors?.username}
             />
-            {errors.username && (
+            {errors?.username && (
               <Form.Text className="text-danger">{errors.username}</Form.Text>
             )}
           </Form.Group>
@@ -114,9 +114,9 @@ const SignupForm = ({ setActiveKey }) => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              isInvalid={!!errors.password}
+              isInvalid={!!errors?.password}
             />
-            {errors.password && (
+            {errors?.password && (
               <Form.Text className="text-danger">{errors.password}</Form.Text>
             )}
           </Form.Group>

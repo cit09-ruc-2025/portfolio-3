@@ -206,3 +206,38 @@ input {
 .action-button-icon {
   color: var(--primary);
 }
+
+.rating .star:hover,
+.star:hover ~ .star {
+  stroke: #f5c518;
+  fill: #f5c518;
+}
+
+.secondary-button,
+.secondary-button:first-child:active {
+  background: #b6b6b6;
+  border: 0;
+}
+
+.secondary-button:hover {
+  background: #a5a3a3;
+}
+
+.media-action-button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.watched-list-people {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 12px;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

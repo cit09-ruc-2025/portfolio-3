@@ -20,6 +20,7 @@ const MovieCard = ({ movieDetail }) => {
     <Link
       to={routeUrls.media.replace(":id", id)}
       style={{ textDecoration: "none", color: "inherit" }}
+      className="d-block h-100 w-100 overflow-hidden"
     >
       <Card>
         <div style={{ height: "300px" }} className="d-flex flex-column">

@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 
 const Layout = () => {
   return (
-    <div className="d-flex flex-column gap-2">
+    <div className="d-flex flex-column">
       <Navbar />
       <main>
         <Outlet />
