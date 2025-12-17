@@ -2,9 +2,11 @@ import { Tags } from "lucide-react";
 import NoData from "../../../components/common/no-data";
 import Spinner from "../../../components/layout/spinner";
 import { useGetGenres } from "../../../hooks/queries/genres.js";
+import { Link } from "react-router-dom";
+import { Badge } from "react-bootstrap";
 
 const GenreList = () => {
-  const { data, isLoading } = useGetGenres();
+  const { data, isLoading } = useGetGenres({ page: 1, perPage: 30 });
 
   if (isLoading) return <Spinner />;
 
@@ -22,13 +24,14 @@ const GenreList = () => {
   return (
     <div className="d-flex flex-wrap gap-2">
       {genres.map((genre) => (
-        <div
-          key={genre.id}
-          className="px-3 py-2 rounded border fw-semibold"
-          style={{ cursor: "pointer" }}
+        <Badge
+          as={Link}
+          to={`/genre/${genre.name}`}
+          bg="secondary"
+          className="px-3 py-2 fw-semibold text-decoration-none"
         >
           {genre.name}
-        </div>
+        </Badge>
       ))}
     </div>
   );
