@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../../components/layout/spinner";
 import { useGetEpisodesList } from "../../../hooks/queries/media";
 import { routeUrls } from "../../../libs/route";
+import ErrorComponent from "../../../components/layout/error-component";
 
 const MediaEpisodes = ({ id }) => {
   const [activeKey, setActiveKey] = useState("");
@@ -19,7 +20,7 @@ const MediaEpisodes = ({ id }) => {
 
   if (isLoading) return <Spinner />;
 
-  if (!data) return <>Error</>;
+  if (!data) return <ErrorComponent />;
 
   return (
     <Row className="justify-content-center episode-tab custom-tab">

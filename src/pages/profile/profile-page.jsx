@@ -1,4 +1,4 @@
-import { Clock, Search, Star } from "lucide-react";
+import { Clock, History, Search, Star } from "lucide-react";
 import { useState } from "react";
 import { Button, Container, Row } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +12,7 @@ import ProfileCard from "./components/profile-card";
 import ReviewList from "./components/review-list";
 import CardGrid from "../../components/layout/card-grid";
 import { getCookie } from "../../libs/utils/cookie";
+import ErrorComponent from "../../components/layout/error-component";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -24,7 +25,7 @@ const ProfilePage = () => {
 
   if (isLoading) return <Spinner />;
 
-  if (!data) return <p>An error occurred.</p>;
+  if (!data) return <ErrorComponent />;
 
   const loggedUsername = getCookie("username");
 
@@ -37,14 +38,14 @@ const ProfilePage = () => {
       </Row>
       {loggedUsername === username && (
         <Row>
-          <CardGrid columns={3}>
+          <CardGrid columns={4}>
             <ProfileActionButton
               onClick={() => navigate(routeUrls.watchedList)}
             >
               <Container className="d-flex flex-column gap-1">
                 <Clock className="action-button-icon mb-1" />
                 <h5 className="mb-0">Watched List</h5>
-                <p>View your watch list</p>
+                <p>View your watch media</p>
               </Container>
             </ProfileActionButton>
             <ProfileActionButton
@@ -61,6 +62,15 @@ const ProfilePage = () => {
                 <Star className="action-button-icon mb-1" />
                 <h5 className="mb-0">Favorites</h5>
                 <p>Your favorite content</p>
+              </Container>
+            </ProfileActionButton>
+            <ProfileActionButton
+              onClick={() => navigate(routeUrls.recentlyViewed)}
+            >
+              <Container className="d-flex flex-column gap-1">
+                <History className="action-button-icon mb-1" />
+                <h5 className="mb-0">Recently Viewed</h5>
+                <p>Pages you viewed</p>
               </Container>
             </ProfileActionButton>
           </CardGrid>

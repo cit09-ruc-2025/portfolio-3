@@ -74,8 +74,11 @@ const MediaHeader = ({
 
   return (
     <Col
-      style={{ overflow: "hidden", position: "relative" }}
-      className="d-flex align-items-end text-white"
+      style={{
+        overflow: "hidden",
+        position: "relative",
+      }}
+      className="d-flex align-items-end text-white media-header"
     >
       {!imgError && poster && (
         <img

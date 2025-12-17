@@ -19,6 +19,7 @@ import FavoritePage from "./pages/favorite/favorite-page";
 import PlaylistPage from "./pages/playlist/playlist-page";
 import GenreMediaPage from "./pages/genre-media/genre-media-page";
 import GenreListPage from "./pages/genre-list/genre-list-page";
+import RecentlyViewedPage from "./pages/recently-viewed/recently-viewed-page";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: routeUrls.favorites,
         element: <FavoritePage />,
+      },
+      {
+        path: routeUrls.recentlyViewed,
+        element: <RecentlyViewedPage />,
       },
     ],
   },

@@ -11,4 +11,6 @@ export const routeUrls = {
   search: "/search",
   genre: "/genre/:genreName",
   genreList: "/genres",
+  recentlyViewed: '/recently-viewed',
 };
+

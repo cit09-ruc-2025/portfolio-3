@@ -263,3 +263,7 @@ input {
   background-color: red;
   color: white !important;
 }
+
+.media-header {
+  margin-top: -1rem !important;
+}
