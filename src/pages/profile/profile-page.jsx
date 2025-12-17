@@ -12,6 +12,7 @@ import ProfileCard from "./components/profile-card";
 import ReviewList from "./components/review-list";
 import CardGrid from "../../components/layout/card-grid";
 import { getCookie } from "../../libs/utils/cookie";
+import ErrorComponent from "../../components/layout/error-component";
 
 const ProfilePage = () => {
   const { username } = useParams();
@@ -24,7 +25,7 @@ const ProfilePage = () => {
 
   if (isLoading) return <Spinner />;
 
-  if (!data) return <p>An error occurred.</p>;
+  if (!data) return <ErrorComponent />;
 
   const loggedUsername = getCookie("username");
 

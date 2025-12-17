@@ -2,6 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import MovieCard from "../../../components/common/movie-card";
 import ReusableSlider from "../../../components/layout/slider";
 import Spinner from "../../../components/layout/spinner";
+import ErrorComponent from "../../../components/layout/error-component";
 
 const HomePageList = ({ moviesQuery, listTitel }) => {
   return (
@@ -25,7 +26,7 @@ const MovieList = ({ data, isLoading }) => {
     );
 
   if (!data) {
-    return <p>Error Occurred</p>;
+    return <ErrorComponent />;
   }
 
   const { items: movieList } = data;

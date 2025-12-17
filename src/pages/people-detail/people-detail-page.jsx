@@ -3,7 +3,7 @@ import {
   useGetPeopleDetail,
   useGetPeopleUserStatus,
 } from "../../hooks/queries/people";
-import { Button, Col, Container, Spinner } from "react-bootstrap";
+import { Button, Col, Container } from "react-bootstrap";
 import PeopleHeader from "./components/people-header";
 import { Calendar } from "lucide-react";
 import PeopleMediaList from "./components/people-media-list";
@@ -12,6 +12,8 @@ import AddToFav from "../../components/common/add-to-fav";
 import AddToPlaylist from "../media-detail/components/add-to-playlist";
 import { useEffect, useRef } from "react";
 import { useAddRecentlyViewed } from "../../hooks/queries/recently-visited";
+import Spinner from "../../components/layout/spinner";
+import ErrorComponent from "../../components/layout/error-component";
 
 const PeopleDetailPage = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const PeopleDetailPage = () => {
   }
 
   if (!data) {
-    return <p>Error Occurred</p>;
+    return <ErrorComponent />;
   }
 
   const { name, birthDate, deathDate, description } = data;
