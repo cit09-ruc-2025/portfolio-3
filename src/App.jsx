@@ -17,6 +17,8 @@ import WatchedListPage from "./pages/watched-list/watched-list-page";
 import PeopleDetailPage from "./pages/people-detail/people-detail-page";
 import FavoritePage from "./pages/favorite/favorite-page";
 import PlaylistPage from "./pages/playlist/playlist-page";
+import GenreMediaPage from "./pages/genre-media/genre-media-page";
+import GenreListPage from "./pages/genre-list/genre-list-page";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: routeUrls.person,
         element: <PeopleDetailPage />,
+      },
+      {
+        path: routeUrls.genre,
+        element: <GenreMediaPage />,
+      },
+      {
+        path: routeUrls.genreList,
+        element: <GenreListPage />,
       },
     ],
   },

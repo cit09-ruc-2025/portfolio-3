@@ -8,7 +8,7 @@ export const useGetGenres = ({ page, perPage }) => {
     queryKey: ["genres", page, perPage],
     queryFn: () =>
       fetchHttp({
-        url: urls.genre,
+        url: urls.genre.base,
         options: {
           method: HTTP_METHODS.GET,
           params: {
