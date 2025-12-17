@@ -34,7 +34,7 @@ const FavoriteList = () => {
   const mediaList = medias?.pages?.flatMap((page) => page?.items);
   const peopleList = people?.pages?.flatMap((page) => page?.items);
 
-  if (!mediaList.length && !peopleList.length) {
+  if (!mediaList?.length && !peopleList?.length) {
     return (
       <NoData>
         <Heart size="30" opacity="0.5" />
