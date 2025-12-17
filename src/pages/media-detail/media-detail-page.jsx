@@ -11,19 +11,32 @@ import MediaCrewList from "./components/media-crew-list";
 import ExtraDetail from "./components/extra-detail";
 import MediaEpisodes from "./components/media-episodes";
 import MediaReviewList from "./components/media-review-list";
+import { useAddRecentlyViewed } from "../../hooks/queries/recently-visited";
+import ErrorComponent from "../../components/layout/error-component";
+import { useEffect, useRef } from "react";
 
 const MediaDetailPage = () => {
   const { id } = useParams();
 
   const { isLoading, data } = useGetMediaDetail(id);
   const { data: mediaUserStatus } = useGetMediaUserStatus(id);
+  const { mutate: addToRecent } = useAddRecentlyViewed();
+
+  const firstLoad = useRef(false);
+
+  useEffect(() => {
+    if (firstLoad.current) return;
+    firstLoad.current = true;
+
+    addToRecent({ mediaId: id });
+  }, [id]);
 
   if (isLoading) {
     return <Spinner />;
   }
 
   if (!data) {
-    return <p>Error Occurred</p>;
+    return <ErrorComponent />;
   }
 
   const {

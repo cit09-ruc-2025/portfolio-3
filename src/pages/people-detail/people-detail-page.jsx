@@ -10,12 +10,24 @@ import PeopleMediaList from "./components/people-media-list";
 import { getCookie } from "../../libs/utils/cookie";
 import AddToFav from "../../components/common/add-to-fav";
 import AddToPlaylist from "../media-detail/components/add-to-playlist";
+import { useEffect, useRef } from "react";
+import { useAddRecentlyViewed } from "../../hooks/queries/recently-visited";
 
 const PeopleDetailPage = () => {
   const { id } = useParams();
 
   const { isLoading, data } = useGetPeopleDetail(id);
   const { data: peopleUserStatus } = useGetPeopleUserStatus(id);
+  const { mutate: addToRecent } = useAddRecentlyViewed();
+
+  const firstLoad = useRef(false);
+
+  useEffect(() => {
+    if (firstLoad.current) return;
+    firstLoad.current = true;
+
+    addToRecent({ peopleId: id });
+  }, [id]);
 
   if (isLoading) {
     return <Spinner />;

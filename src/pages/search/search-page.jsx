@@ -60,10 +60,7 @@ const SearchPage = () => {
               <h4>Media</h4>
               <div className="search-result">
                 {mediaItems?.map((media) => (
-                  <MovieCard
-                    movieDetail={{ ...media, id: media.mediaId }}
-                    key={media.id}
-                  />
+                  <MovieCard movieDetail={media} key={media.id} />
                 ))}
               </div>
               {hasNextMediaPage && (

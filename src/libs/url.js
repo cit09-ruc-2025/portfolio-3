@@ -33,6 +33,9 @@ export const urls = {
   searchHistory: {
     base: "/search-history",
   },
+  recentlyVisited: {
+    base: "/recently-visited",
+  },
   watchedList: {
     base: "/user/:id/watch-history",
     delete: "/user/:id/watch-history/:mediaId",

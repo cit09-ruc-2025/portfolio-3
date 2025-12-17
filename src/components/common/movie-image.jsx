@@ -1,16 +1,33 @@
-import { useGetMediaImage } from "../../hooks/queries/images";
-import Spinner from "../layout/spinner";
 import { CardImg } from "react-bootstrap";
+import { useGetImage } from "../../hooks/queries/images";
+import ErrorComponent from "../layout/error-component";
+import Spinner from "../layout/spinner";
 
 const MovieImage = ({ movieDetail, height, width, fit }) => {
-  const { id, poster, mediaType } = movieDetail;
+  const { id, poster, hasEpisodes } = movieDetail;
 
-  const { isLoading, data } = useGetMediaImage(id, mediaType);
+  const { isLoading, data } = useGetImage(id);
 
-  const img = data?.posters?.[0];
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-  const imgUrl = img
-    ? `${import.meta.env.VITE_IMAGE_BASE_URL}/w185/${img.file_path}`
+  if (!data) {
+    return <ErrorComponent />;
+  }
+
+  const { tv_results, movie_results } = data;
+
+  let movieThumbnail = null;
+
+  if (hasEpisodes) {
+    movieThumbnail = tv_results?.[0]?.poster_path;
+  } else {
+    movieThumbnail = movie_results?.[0]?.poster_path;
+  }
+
+  const imgUrl = movieThumbnail
+    ? `${import.meta.env.VITE_IMAGE_BASE_URL}/w185/${movieThumbnail}`
     : poster
     ? poster
     : "/fallback.jpg";
